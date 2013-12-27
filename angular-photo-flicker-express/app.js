@@ -4,8 +4,10 @@
  */
 
 var express = require('express');
-var http = require('http');
-var path = require('path');
+var http 	= require('http');
+var path 	= require('path');
+var fs 		= require('fs');
+var util	= require('util');
 
 var app = module.exports = express();
 
@@ -29,6 +31,11 @@ if (app.get('env') === 'development') {
 // production only
 if (app.get('env') === 'production') {
   // TODO
+};
+
+options = {
+	followLinks: false,
+	filters: ["Temp", "_Temp", "meta-data"] // directories with these keys will be skipped
 };
 
 /**
@@ -70,11 +77,63 @@ app.get('/api/category/all',
     			{category: 'Catergory D', dir: 'CatergoryD'}
 			];
 
+		var dirTreeList = dirAndFileTree('public/img/gallery/photos')
+		console.log(dirTreeList) 
+		console.log(dirTreeList.children) 
+		console.log(dirTreeList.children[0].children[0]) 
+
         res.status(200);
 		res.type('application/json');
 		res.json(static_categories); // return in JSON format
 	}
 );
+
+
+var dirAndFileTree = function(filename) {
+    var stats = fs.lstatSync(filename);
+    var info = {
+            full_path: filename,
+            short_path: filename.replace("public/",""),
+            name: path.basename(filename),
+            pretty_name: path.basename(filename).replace("_", " "),
+            modified_time: stats.mtime.getTime(),
+            create_time: stats.ctime.getTime(),
+            size: stats.size
+        };
+
+    if (stats.isDirectory()) {
+        info.type = "folder";
+        info.children = fs.readdirSync(filename).map(function(child) {
+            return dirAndFileTree(filename + '/' + child);
+        });
+    } else {
+        // Assuming it's a file. In real life it could be a symlink or
+        // something else!
+        info.type = "file";
+    }
+    return info;
+}
+
+var dirTree = function(filename) {
+    var stats = fs.lstatSync(filename);
+    var info = {
+            path: filename,
+            name: path.basename(filename),
+            pretty_name: path.basename(filename).replace("_", " ")
+        };
+
+    if (stats.isDirectory()) {
+        info.type = "folder";
+        info.children = fs.readdirSync(filename).map(function(child) {
+            return dirTree(filename + '/' + child);
+        });
+    } else {
+        // Assuming it's a file. In real life it could be a symlink or
+        // something else!
+        info.type = "file";
+    }
+    return info;
+}
 
 // ------------------------------------------------------------------
 // ----------------------------- angular ----------------------------

@@ -20,6 +20,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             });
     }
 
+    $scope.selectCategory = function(index){
+        $log.info("Category clicked - " + index);
+    }
+
   }])
   .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'PhotoService', function($rootScope, $scope, $log, PhotoService) {
 
