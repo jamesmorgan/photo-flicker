@@ -9,13 +9,16 @@ Angular JS Photo Gallery
 * angular-js - 1.2.6 - http://angularjs.org/
 * angular-touch
 * angular-annimate
+* jquery - 2.0.3
+* twitter-bootstrap - 3.0.3
 
 #### Running the Application
 
-* `nodejs scripts/web-server.js` 
+* `nodejs scripts/web-server.js` - OR `./start-server.js`
 
 * Http Server runs at: `http://localhost:8000/`
 
+* Photo Gallery = `img/gallery/photos/{{Category}}`
 
 #### Thoughts/Ideas
 
