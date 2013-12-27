@@ -1,0 +1,9 @@
+{
+  "name": "angularjs-photo-flicker",
+  "description": "A AngularJS Simple Photo Gallery",
+  "repository": "https://github.com/angular/angular-seed",
+  "private" : "true",
+  "dependencies": {
+      "express": "3.x"
+  }
+}

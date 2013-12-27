@@ -5,6 +5,7 @@ Angular JS Photo Gallery
 #### Requirements
 
 * nodejs : v0.10.15
+* express : 3.x
 * angular-seed - https://github.com/angular/angular-seed
 * angular-js - 1.2.6 - http://angularjs.org/
 * angular-touch
@@ -12,13 +13,14 @@ Angular JS Photo Gallery
 * jquery - 2.0.3
 * twitter-bootstrap - 3.0.3
 
+
 #### Running the Application
 
-* `nodejs scripts/web-server.js` - OR `./start-server.js`
+* `nodejs app.js` when inside `angular-photo-flicker-express`
 
 * Http Server runs at: `http://localhost:8000/`
 
-* Photo Gallery = `img/gallery/photos/{{Category}}`
+* Photo Gallery = `img/gallery/photos/{{category}}/{{photos}}`
 
 #### Thoughts/Ideas
 
