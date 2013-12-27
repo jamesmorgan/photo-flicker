@@ -48,49 +48,62 @@ options = {
 // ------------------------------- api ------------------------------
 // ------------------------------------------------------------------
 
+var static_photos = [
+	{src: 'http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg', desc: 'Image 01'},
+	{src: 'http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg', desc: 'Image 02'},
+	{src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
+	{src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
+	{src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
+	{src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
+];
+
+var static_categories = [
+	{category: 'Catergory A', dir: 'CatergoryA'},
+	{category: 'Catergory B', dir: 'CatergoryB'},
+	{category: 'Catergory C', dir: 'CatergoryC'},
+	{category: 'Catergory D', dir: 'CatergoryD'}
+];
+
 // Gallery API
 app.get('/api/gallery/load/all', 
 	function(req, res) {
-
-		 var static_photos = [
-    			{src: 'http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg', desc: 'Image 01'},
-		        {src: 'http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg', desc: 'Image 02'},
-		        {src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
-		        {src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
-		        {src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
-		        {src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
-        	];
-
-        res.status(200);
-		res.type('application/json');
-		res.json(static_photos); // return in JSON format
+    	responseJson(res, static_photos);
 	}
 );
 
+// Category API
 app.get('/api/category/all', 
 	function(req, res) {
-
-		 var static_categories = [
-    			{category: 'Catergory A', dir: 'CatergoryA'},
-    			{category: 'Catergory B', dir: 'CatergoryB'},
-    			{category: 'Catergory C', dir: 'CatergoryC'},
-    			{category: 'Catergory D', dir: 'CatergoryD'}
-			];
-
 		var dirTreeList = dirAndFileTree('public/img/gallery/photos')
-		console.log(dirTreeList) 
-		console.log(dirTreeList.children) 
-		console.log(dirTreeList.children[0].children[0]) 
-
-        res.status(200);
-		res.type('application/json');
-		res.json(static_categories); // return in JSON format
+		// console.log(dirTreeList) 
+		// console.log(dirTreeList.children) 
+		// console.log(dirTreeList.children[0].children[0]) 
+    	responseJson(res, static_categories);	
 	}
 );
 
 
-var dirAndFileTree = function(filename) {
-    var stats = fs.lstatSync(filename);
+app.get('/api/category/all/simple', 
+	function(req, res) {
+
+		var dirTreeList = loadFolderTree('public/img/gallery/photos')
+		console.log(dirTreeList) 
+		// console.log(dirTreeList.children) 
+		// console.log(dirTreeList.children[0].children[0]) 
+
+    	responseJson(res, dirTreeList);	
+	}
+);
+
+var responseJson = function(res, data){
+	res.status(200);
+	res.type('application/json');
+	res.json(data); // return in JSON format
+}		
+
+// File/Folder Utilities
+
+var buildFileInfo = function(filename, stats){
     var info = {
             full_path: filename,
             short_path: filename.replace("public/",""),
@@ -100,6 +113,25 @@ var dirAndFileTree = function(filename) {
             create_time: stats.ctime.getTime(),
             size: stats.size
         };
+    return info;
+}
+
+var loadFolderTree = function(filename){
+    var stats = fs.lstatSync(filename);
+    if (stats.isDirectory()) {
+	    var info = buildFileInfo(filename, stats);
+        info.type = "folder";
+        info.children = fs.readdirSync(filename).map(function(child) {
+            return loadFolderTree(filename + '/' + child);
+        });
+		return info;
+	}
+	return;
+}
+
+var dirAndFileTree = function(filename) {
+    var stats = fs.lstatSync(filename);
+    var info = buildFileInfo(filename, stats);
 
     if (stats.isDirectory()) {
         info.type = "folder";
@@ -116,11 +148,7 @@ var dirAndFileTree = function(filename) {
 
 var dirTree = function(filename) {
     var stats = fs.lstatSync(filename);
-    var info = {
-            path: filename,
-            name: path.basename(filename),
-            pretty_name: path.basename(filename).replace("_", " ")
-        };
+    var info = buildFileInfo(filename, stats);
 
     if (stats.isDirectory()) {
         info.type = "folder";
@@ -159,6 +187,7 @@ var clientErrorHandler = function(err, req, res, next) {
 		next(err);
 	}
 }
+
 var errorHandler = function(err, req, res, next) {
 	res.status(500);
 	res.render('error', { error: err });

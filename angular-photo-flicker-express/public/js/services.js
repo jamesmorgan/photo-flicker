@@ -39,7 +39,7 @@ angular.module('myApp.services', [])
 	        		"Accept": "application/json", 
 	        		"Content-Type": "application/json" 
 	        	},
-	        	url: HTTP_ENDPOINT + CATEGORY_API + "/all"
+	        	url: HTTP_ENDPOINT + CATEGORY_API + "/all/simple"
 	      	});
 	    }
 

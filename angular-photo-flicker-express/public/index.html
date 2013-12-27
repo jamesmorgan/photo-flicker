@@ -17,13 +17,12 @@
 <body>
 
   <div ng-controller="NavMenuCtrl" ng-init="init()">
-
-    <ul>
-        <li ng-repeat="cat in categories">
-          <a target='#' ng-click="selectCategory($index)">{{cat.category}}</a>
-        </li>
-    </ul>
-
+        <span ng-repeat="c in categories.children">
+          <a href="#"  ng-click="selectCategory($index);">{{c.pretty_name}}</a><br />
+          <span ng-repeat="c2 in c.children">
+            <a href="#"  ng-click="selectSubCategory($parent.$index, $index);"> >> {{c2.pretty_name}}</a><br />
+          </span>
+        </span>
   </div>
 
   <div ng-view>

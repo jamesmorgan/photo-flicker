@@ -7,7 +7,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
   	$scope.world = "world!";
 
-    $scope.categories = {};
+    $scope.categories = [];
 
     $scope.init = function(){
         PhotoService.loadCategories()
@@ -22,6 +22,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
     $scope.selectCategory = function(index){
         $log.info("Category clicked - " + index);
+    }
+
+    $scope.selectSubCategory = function(parentIndex, index){
+        $log.info("Sub Category clicked - parentIndex = " + parentIndex + " | index : " + index);        
     }
 
   }])
