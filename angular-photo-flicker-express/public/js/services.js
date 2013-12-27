@@ -18,14 +18,8 @@ angular.module('myApp.services', [])
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
 
-	    var static_photos = [
-	    			{src: 'http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg', desc: 'Image 01'},
-			        {src: 'http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg', desc: 'Image 02'},
-			        {src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
-			        {src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
-			        {src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
-			        {src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
-		        ];
+		var GALLERY_API = "/api/gallery";
+		var CATEGORY_API = "/api/category";
 
 	    var doLoadAllPhotos = function() {
 	    	return $http({
@@ -34,22 +28,28 @@ angular.module('myApp.services', [])
 	        		"Accept": "application/json", 
 	        		"Content-Type": "application/json" 
 	        	},
-	        	url: HTTP_ENDPOINT + "/api/gallery/load/all"
+	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
+	      	});
+	    }
+
+	    var doLoadAllCategories = function() {
+	    	return $http({
+	        	method: 'GET',
+	        	headers: {
+	        		"Accept": "application/json", 
+	        		"Content-Type": "application/json" 
+	        	},
+	        	url: HTTP_ENDPOINT + CATEGORY_API + "/all"
 	      	});
 	    }
 
 	    return {
-	      staticPhotos: function() { 
-	      	return static_photos; 
-	      },
-
 	      loadPhotos: function() { 
 	      	return doLoadAllPhotos();
 	      },
 
+	      loadCategories: function(){
+	      	return doLoadAllCategories();
+	      }
     	};
-  	}])
-	.factory('PhotoImageScanning', ['$http', function($http) {
-
-
   	}]);

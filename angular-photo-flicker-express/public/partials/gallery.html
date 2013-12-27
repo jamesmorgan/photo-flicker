@@ -1,34 +1,35 @@
 
-    <!-- slider container -->
-    <div class="container slider">
 
-        <!-- enumerate all photos -->
-        <img class="slide"
-                ng-repeat="photo in photos"  
-                ng-swipe-right="showPrev()" 
-                ng-swipe-left="showNext()" 
-                ng-show="isActive($index)"
-                ng-src="{{photo.src}}" />
+<!-- slider container -->
+<div class="container slider">
 
-        <!-- prev / next controls -->
-        <a class="arrow prev" href="#" ng-click="showPrev()"></a>
-        <a class="arrow next" href="#" ng-click="showNext()"></a>
+    <!-- enumerate all photos -->
+    <img class="slide"
+            ng-repeat="photo in photos"  
+            ng-swipe-right="showPrev()" 
+            ng-swipe-left="showNext()" 
+            ng-show="isActive($index)"
+            ng-src="{{photo.src}}"
+            alt="{{photo.desc}}" />
 
-        <!-- extra navigation controls -->
-        <ul class="nav">
-            <li ng-repeat="photo in photos" 
-                ng-class="{'active':isActive($index)}">
-                
-                <img alt="{{photo.desc}}" title="{{photo.desc}}" 
-                    ng-src="{{photo.src}}" 
-                    ng-click="showPhoto($index);" />
+    <!-- extra navigation controls -->
+    <ul class="nav">
+        <li ng-repeat="photo in photos" 
+            ng-class="{'active':isActive($index)}">
+            
+            <img alt="{{photo.desc}}" title="{{photo.desc}}" 
+                ng-src="{{photo.src}}" 
+                ng-click="showPhoto($index);" />
 
-            </li>
-        </ul>
+        </li>
+    </ul>
 
-    </div>
+</div>
 
-    <br />
+<br />
 
-    <a class="button"  href="#" ng-click="loadPhotos()">Load Photos</a>
+<a class="button"  href="#" ng-click="loadPhotos()">Load Photos </a>
 
+<br /><span ng-bind="photos.length"></span> 
+<br /><span ng-bind="_Index"></span>
+<br /><pre>{{photos | json}}</pre>

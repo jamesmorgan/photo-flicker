@@ -3,15 +3,28 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
-  .controller('NavMenuCtrl', ['$scope', function($scope) {
+  .controller('NavMenuCtrl', ['$scope', '$log', 'PhotoService', function($scope, $log, PhotoService) {
 
-  	$scope.world = "world!"
+  	$scope.world = "world!";
+
+    $scope.categories = {};
+
+    $scope.init = function(){
+        PhotoService.loadCategories()
+            .success(function(data, status, headers) {
+                $log.info("Success - status : " + status + " | length : " + data.length + " data : " + data);
+                $scope.categories = data;
+            })
+            .error(function(data, status, headers){
+                $log.info("Failure - status : " + status);
+            });
+    }
 
   }])
-  .controller('PhotoGalleryCtrl', ['$scope', '$log', 'PhotoService', function($scope, $log, PhotoService) {
+  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'PhotoService', function($rootScope, $scope, $log, PhotoService) {
 
     // Set of Photos
-    $scope.photos = PhotoService.staticPhotos();
+    $rootScope.photos = [];
 
     // initial image index
     $scope._Index = 0;
@@ -21,28 +34,24 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         return $scope._Index === index;
     };
 
-    // show prev image
-    $scope.showPrev = function () {
-        $scope._Index = ($scope._Index > 0) ? --$scope._Index : $scope.photos.length - 1;
-    };
-
-    // show next image
-    $scope.showNext = function () {
-        $scope._Index = ($scope._Index < $scope.photos.length - 1) ? ++$scope._Index : 0;
-    };
-
     // show a certain image
     $scope.showPhoto = function (index) {
         $scope._Index = index;
+        $log.info("Index : " + $scope._Index);
     };
 
     $scope.loadPhotos = function (){
+
+        $rootScope.photos = [];
+
         PhotoService.loadPhotos()
             .success(function(data, status, headers) {
-                $log.info("Success - data : " + data)
+                $log.info("Success - status : " + status + " | length : " + data.length + " data : " + data);
+                $rootScope.photos = data;
             })
             .error(function(data, status, headers){
-                $log.info("Failure")
+                $log.info("Failure - status : " + status);
             });
-    }
+    };
+
 }]);

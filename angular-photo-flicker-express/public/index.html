@@ -16,8 +16,10 @@
 
 <body>
 
-  <div ng-controller="NavMenuCtrl">
-    Hello {{world}}
+  <div ng-controller="NavMenuCtrl" ng-init="init()">
+    <span data-ng-repeat='cat in categories'>
+      <a target='#' ng-click="selectCategory($index)">{{cat.category}}</a>
+    </span>
   </div>
 
   <div ng-view>

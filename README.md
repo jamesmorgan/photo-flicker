@@ -16,7 +16,11 @@ Angular JS Photo Gallery
 
 #### Running the Application
 
+* `npm install express --save` - install dependencies
+
 * `nodejs app.js` when inside `angular-photo-flicker-express`
+
+* `DEBUG=express:* nodejs app.js` to DEBUG when inside `angular-photo-flicker-express`
 
 * Http Server runs at: `http://localhost:8000/`
 
