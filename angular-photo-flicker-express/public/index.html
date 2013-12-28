@@ -17,26 +17,29 @@
 <body ng-cloak>
 
   <div ng-controller="NavMenuCtrl" ng-init="init()" >
-
         <!-- <br /><pre>{{categories | json}}</pre> -->
-
         <span ng-repeat="c in data.categories.children">
           <a href="#" ng-click="selectCategory($index);">{{c.pretty_name}}</a><br />
           <span ng-repeat="c2 in c.children">
             <a href="#"  ng-click="selectSubCategory($parent.$index, $index);"> >> {{c2.pretty_name}}</a><br />
           </span>
         </span>
-      <a class="button"  href="#" ng-click="init()">Load Categories</a>
+        <a class="button"  href="#" ng-click="init()">Load Categories</a>
   </div>
 
 
-  <div id="content">
+  <div id="container">
     <div ng-view>
       
     </div>
   </div>
 
-  <div>Version: v<span app-version></span></div>
+  <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here. </p> 
+        <p class="text-muted">Version: <span app-version> </span>
+      </div>
+    </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>

@@ -1,34 +1,51 @@
 
+<div class="row">
 
-<!-- slider container -->
-<div class="container slider">
+    <!-- Padding column Left --> 
+    <div class="col-xs-3 col-md-2">
+        
+    </div>
 
-    <!-- enumerate all photos -->
-    <img class="slide"
-            ng-repeat="photo in data.photos"
-            ng-swipe-left="showNext()" 
-            ng-show="isActive($index)"
-            ng-src="{{photo.src}}"
-            alt="{{photo.desc}}" />
+    <!-- START : Main Column --> 
+    <div class="col-xs-6 col-md-8">
 
-    <!-- extra navigation controls -->
-    <ul class="nav">
-        <li ng-repeat="photo in data.photos" 
-            ng-class="{'active':isActive($index)}">
-            
-            <img alt="{{photo.desc}}" title="{{photo.desc}}" 
-                ng-src="{{photo.src}}" 
-                ng-click="showPhoto($index);" />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Category <small>Sub Category</small></h3>
+            </div>
+            <div class="panel-body" style="min-height: 530px;">
 
-        </li>
-    </ul>
+                    <img class="center-block" 
+                        ng-repeat="photo in data.photos"
+                        ng-swipe-left="showNext()" 
+                        ng-show="isActive($index)"
+                        ng-src="{{photo.src}}"
+                        alt="{{photo.desc}}" />
+            </div>
 
+            <!-- extra navigation controls -->
+            <ul class="nav" style="min-height: 70px;">
+                <li ng-repeat="photo in data.photos" 
+                    ng-class="{'active':isActive($index)}">
+                    
+                    <img alt="{{photo.desc}}" title="{{photo.desc}}" 
+                        ng-src="{{photo.src}}" 
+                        ng-click="showPhoto($index);" />
+
+                </li>
+            </ul>
+        </div>
+
+        <a class="button"  href="#" ng-click="loadPhotos()">Load Photos </a>
+
+        <span ng-bind="data.photos.length"></span> 
+        <span ng-bind="_Index"></span>
+
+    </div>
+    <!-- END : Main Column --> 
+
+    <!-- Padding column Right --> 
+    <div class="col-xs-3 col-md-2">
+        
+    </div>
 </div>
-
-<br />
-
-<a class="button"  href="#" ng-click="loadPhotos()">Load Photos </a>
-
-<br /><span ng-bind="photos.length"></span> 
-<br /><span ng-bind="_Index"></span>
-<br /><pre>{{photos | json}}</pre>
