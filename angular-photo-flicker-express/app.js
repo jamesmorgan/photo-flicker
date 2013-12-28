@@ -17,9 +17,9 @@ var app = module.exports = express();
 
 // all environments
 app.set('port', process.env.PORT || 8000);
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(express.logger('dev'));		// Log all requests to console
+app.use(express.bodyParser()); 		// pull information from html in POST
+app.use(express.methodOverride()); 	// simulate DELETE and PUT
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 

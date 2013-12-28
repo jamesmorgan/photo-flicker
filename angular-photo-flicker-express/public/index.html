@@ -16,18 +16,20 @@
 
 <body ng-cloak>
 
-  <div id="container">
-    <div ng-view>
-      
+  <div id="wrap">
+    <div id="container">
+      <div ng-view>
+        
+      </div>
     </div>
   </div>
 
   <div id="footer">
     <div class="container">
-      <p class="text-muted">Place sticky footer content here. </p> 
-      <p class="text-muted">Version: <span app-version> </span>
+      <p class="text-muted">Created By James Morgan. Version: <span app-version> </span></p> 
     </div>
   </div>
+
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
@@ -41,6 +43,9 @@
   <script type="text/javascript" src="lib/angular/angular-route.js"></script>
   <script type="text/javascript" src="lib/angular/angular-animate.js"></script>
   <script type="text/javascript" src="lib/angular/angular-touch.js"></script>
+
+  <script type="text/javascript" src="lib/angular-ui/ui-bootstrap-custom-0.7.0.js"></script>
+  <script type="text/javascript" src="lib/angular-ui/ui-bootstrap-custom-tpls-0.7.0.js"></script>
 
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/services.js"></script>

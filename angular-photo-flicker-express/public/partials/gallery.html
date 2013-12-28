@@ -27,7 +27,6 @@
             <br /><pre>{{data.selectedCategory | json}}</pre>
             <br /><pre>{{data.selectedSubCategory | json}}</pre>
 
-
         </div>
 
     </div>
@@ -35,7 +34,7 @@
     <!-- START : Main Column --> 
     <div class="col-xs-6 col-md-8">
 
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
             <div class="panel-heading">
                 <h3><span ng-bind="data.selectedCategoryName"></span> <small ng-bind="data.selectedSubCategoryName"></small></h3>
             </div>
@@ -45,25 +44,45 @@
                         ng-repeat="photo in data.selectedPhotos"
                         ng-swipe-left="showNext()" 
                         ng-show="isActive($index)"
-                        ng-src="http://localhost:8000/{{photo.short_path}}"
+                        ng-src="{{photo.short_path}}"
                         alt="{{photo.pretty_name}}" />
-            </div>
+            </div> -->
 
             <!-- extra navigation controls -->
-            <ul class="nav" style="min-height: 70px;">
+            <!-- ul class="nav" style="min-height: 70px;">
                 <li ng-repeat="photo in data.selectedPhotos" 
                     ng-class="{'active':isActive($index)}">
                     
                     <img alt="{{photo.pretty_name}}" title="{{photo.pretty_name}}" 
-                        ng-src="http://localhost:8000/{{photo.short_path}}" 
+                        ng-src="{{photo.short_path}}" 
                         ng-click="showPhoto($index);" />
 
                 </li>
-            </ul>
-        </div>
+            </ul> -->
 
-        <span ng-bind="data.selectedPhotos.length"></span> 
-        <span ng-bind="_Index"></span>
+            <span ng-bind="data.selectedPhotos.length"></span> 
+            <span ng-bind="_Index"></span>
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <h3><span ng-bind="data.selectedCategoryName"></span> <small ng-bind="data.selectedSubCategoryName"></small></h3>
+                </div>
+                
+                <div class="panel-body" style="min-height: 530px;">
+                    <carousel interval="5000">
+                        <slide ng-repeat="photo in data.selectedPhotos" active="photo.active">
+                        <img ng-src="{{photo.short_path}}" style="margin:auto;">
+                        <div class="carousel-caption">
+                            <h4>Slide {{$index}}</h4>
+                            <p>{{photo.pretty_name}}</p>
+                        </div>
+                        </slide>
+                    </carousel>
+                </div>
+           </div>
+
+        </div>
 
     </div>
     <!-- END : Main Column --> 
