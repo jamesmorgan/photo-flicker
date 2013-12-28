@@ -1,6 +1,7 @@
+photo-flicker
+=============
 
-Angular JS Photo Gallery
-========================
+A simple browser based image gallery application built using angular-js and node.js - WIP 
 
 #### Requirements
 
@@ -39,5 +40,3 @@ Angular JS Photo Gallery
 * Run on node.js
 * Multi session
 * No security required
-
-    
