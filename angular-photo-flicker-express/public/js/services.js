@@ -22,6 +22,9 @@ angular.module('myApp.services', [])
 			selectedCategory: -1,
             selectedSubCategory: -1,
 
+            selectedCategoryName: "Category",
+			selectedSubCategoryName: "Sub Category",            
+
 			setSelectedPhotos: function(data){
 				$log.info("setSelectedPhotos : " + data);
 				this.photos = data;
@@ -34,7 +37,13 @@ angular.module('myApp.services', [])
 
 			updatedPhotoSelection: function(){
 				$log.info("updatedPhotoSelection - Category: " + this.selectedCategory + " | Sub Category: " + this.selectedSubCategory);
-				this.selectedPhotos = this.photos.children[this.selectedCategory].children[this.selectedSubCategory].children;
+				var category = this.photos.children[this.selectedCategory];
+				var subCategory = category.children[this.selectedSubCategory];
+
+				this.selectedCategoryName = category.pretty_name;
+				this.selectedSubCategoryName = subCategory.pretty_name;
+
+				this.selectedPhotos = subCategory.children; 
 			},
 
 			toStringSelected: function(){
