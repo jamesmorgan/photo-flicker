@@ -58,8 +58,27 @@ var static_photos = [
 ];
 
 // Gallery API
+app.get('/api/gallery/load/static', 
+	function(req, res) {
+    	responseJson(res, static_photos);
+	}
+);
+
 app.get('/api/gallery/load/all', 
 	function(req, res) {
+		var fullList = dirAndFileTree('public/img/gallery/photos')
+
+		console.log(fullList.children)
+
+    	responseJson(res, fullList);
+	}
+);
+
+app.get('/api/gallery/load/:category/:subcategory', 
+	function(req, res) {
+		console.log(req.params.category);
+		console.log(req.params.subcategory);
+		
     	responseJson(res, static_photos);
 	}
 );
@@ -67,12 +86,10 @@ app.get('/api/gallery/load/all',
 // Category API
 app.get('/api/category/load/all', 
 	function(req, res) {
-
 		var dirTreeList = loadFolderTree('public/img/gallery/photos')
 		console.log(dirTreeList) 
 		console.log(dirTreeList.children) 
 		console.log(dirTreeList.children[0].children[0]) 
-
     	responseJson(res, dirTreeList);	
 	}
 );
@@ -121,25 +138,7 @@ var dirAndFileTree = function(filename) {
             return dirAndFileTree(filename + '/' + child);
         });
     } else {
-        // Assuming it's a file. In real life it could be a symlink or
-        // something else!
-        info.type = "file";
-    }
-    return info;
-}
-
-var dirTree = function(filename) {
-    var stats = fs.lstatSync(filename);
-    var info = buildFileInfo(filename, stats);
-
-    if (stats.isDirectory()) {
-        info.type = "folder";
-        info.children = fs.readdirSync(filename).map(function(child) {
-            return dirTree(filename + '/' + child);
-        });
-    } else {
-        // Assuming it's a file. In real life it could be a symlink or
-        // something else!
+        // Assuming it's a file. In real life it could be a symlink or something else!
         info.type = "file";
     }
     return info;

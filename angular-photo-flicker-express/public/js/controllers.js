@@ -10,7 +10,11 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
         $scope.data = Data;
 
-        $scope.init = function(){
+        $scope.init = function() {
+            $scope.loadCategories();
+        }
+
+        $scope.loadCategories = function (){
             GalleryService.loadCategories()
                 .success(function(data, status, headers) {
                     $log.info("loadCategories Success - status : " + status + " data : " + data);
@@ -21,14 +25,19 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
                 });
         }
 
+        $scope.showImages = function(){
+            $log.info($scope.data.toStringSelected())
+            Data.updatedPhotoSelection();
+        }
+
         $scope.selectCategory = function(index){
             $log.info("Category clicked - " + index);
-            $log.info("Sub Category clicked - parentIndex = " + $scope.categories.children[index]);
+            $log.info("Sub Category clicked - parentIndex = " + $scope.data.categories.children[index]);
         }
 
         $scope.selectSubCategory = function(parentIndex, index){
             $log.info("Sub Category clicked - parentIndex = " + parentIndex + " | index : " + index);
-            $log.info("Sub Category Objects - parentIndex = " + $scope.categories.children[parentIndex] + " | index : " + $scope.categories.children[parentIndex].children[index]);
+            $log.info("Sub Category Objects - parentIndex = " + $scope.data.categories.children[parentIndex] + " | index : " + $scope.data.categories.children[parentIndex].children[index]);
         }
 
   }])
@@ -40,6 +49,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
         // initial image index
         $scope._Index = 0;
+
+        $scope.init = function(){
+            $scope.loadPhotos();
+        }
 
         // if a current image is the same as requested image
         $scope.isActive = function (index) {
@@ -53,15 +66,22 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }
 
         $scope.loadPhotos = function (){
-
-            GalleryService.loadPhotos()
-                .success(function(data, status, headers) {
-                    $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);
-                    Data.setSelectedPhotos(data);
-                })
-                .error(function(data, status, headers){
-                    $log.info("Failure - status : " + status);
-                });
+            // GalleryService.loadPhotos()
+            //     .success(function(data, status, headers) {
+            //         $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);
+            //         Data.setSelectedPhotos(data);
+            //     })
+            //     .error(function(data, status, headers){
+            //         $log.info("Failure - status : " + status);
+            //     });
+            GalleryService.loadAllPhotos()
+                    .success(function(data, status, headers) {
+                        $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);
+                        Data.setSelectedPhotos(data);
+                    })
+                    .error(function(data, status, headers){
+                        $log.info("Failure - status : " + status);
+                    });
         }
 
 }]);

@@ -2,64 +2,63 @@
 
 /* Services */
 
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
-
 angular.module('myApp.services', [])
 	/**
 	 * App Version
 	 */
 	.value('version', '0.1')
 	/**
-	 * Photo Loading Service
+	 * Shared Application Data
 	 */
-
 	.factory('Data', ['$log', function($log) {
-		
-		// var photoMetaData = [];
-		// var categoriesMetaData = [];
 
 		return {
-
+            
 			photos: [],
 			categories: [],
 
-			// getSelectedPhotos: function(){
-			// 	$log.info("getSelectedPhotos : " + photoMetaData);
-			// 	return photoMetaData;
-			// },
+			selectedPhotos: [],
+
+			selectedCategory: -1,
+            selectedSubCategory: -1,
 
 			setSelectedPhotos: function(data){
 				$log.info("setSelectedPhotos : " + data);
 				this.photos = data;
 			},
 
-			// getCategories: function(){
-			// 	$log.info("getCategories : " + categoriesMetaData);
-			// 	return categoriesMetaData;
-			// },
-
 			setCategories: function(data){
 				$log.info("setCategories : " + data);
 				this.categories = data;
 			},
+
+			updatedPhotoSelection: function(){
+				$log.info("updatedPhotoSelection - Category: " + this.selectedCategory + " | Sub Category: " + this.selectedSubCategory);
+				this.selectedPhotos = this.photos.children[this.selectedCategory].children[this.selectedSubCategory].children;
+			},
+
+			toStringSelected: function(){
+				return "Category: " + this.selectedCategory + " | Sub Category: " + this.selectedSubCategory;
+			},
 		}
 	}])
+	/**
+	 * Gallery Loading Service
+	 */
 	.factory('GalleryService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
 		var GALLERY_API = "/api/gallery";
 		var CATEGORY_API = "/api/category";
 
-	    var doLoadAllPhotos = function() {
+	    var doLoadStaticPhotos = function() {
 	    	return $http({
 	        	method: 'GET',
 	        	headers: {
 	        		"Accept": "application/json", 
 	        		"Content-Type": "application/json" 
 	        	},
-	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
+	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/static"
 	      	});
 	    }
 
@@ -74,9 +73,24 @@ angular.module('myApp.services', [])
 	      	});
 	    }
 
+	    var doLoadAllPhotos = function() {
+	    	return $http({
+	        	method: 'GET',
+	        	headers: {
+	        		"Accept": "application/json", 
+	        		"Content-Type": "application/json" 
+	        	},
+	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
+	      	});
+	    }
+
 	    return {
+    		loadAllPhotos: function(){
+				return doLoadAllPhotos();
+    		},
+
 	      	loadPhotos: function() { 
-		      	return doLoadAllPhotos();
+		      	return doLoadStaticPhotos();
   			},
 
 			loadCategories: function(){

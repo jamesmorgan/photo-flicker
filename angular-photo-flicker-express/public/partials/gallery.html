@@ -1,9 +1,35 @@
 
-<div class="row">
+<div class="row" ng-init="init()">
 
     <!-- Padding column Left --> 
     <div class="col-xs-3 col-md-2">
-        
+       
+        <div ng-controller="NavMenuCtrl" ng-init="init()" >
+            <!-- <br /><pre>{{data.categories | json}}</pre> -->
+
+            <a class="button" href="#" ng-click="init()">Reload Categories</a>
+
+            <h6>Category</h6>
+            <select ng-model="data.selectedCategory">
+                <option ng-repeat="c in data.categories.children" value="{{$index}}">
+                    {{c.pretty_name}}
+                </option>
+            </select>
+
+            <h6>Sub Category</h6>
+            <select ng-model="data.selectedSubCategory"
+                    ng-change="showImages()">
+                <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
+                    {{c.pretty_name}}
+                </option>
+            </select>
+
+            <br /><pre>{{data.selectedCategory | json}}</pre>
+            <br /><pre>{{data.selectedSubCategory | json}}</pre>
+
+
+        </div>
+
     </div>
 
     <!-- START : Main Column --> 
@@ -16,20 +42,20 @@
             <div class="panel-body" style="min-height: 530px;">
 
                     <img class="center-block" 
-                        ng-repeat="photo in data.photos"
+                        ng-repeat="photo in data.selectedPhotos"
                         ng-swipe-left="showNext()" 
                         ng-show="isActive($index)"
-                        ng-src="{{photo.src}}"
-                        alt="{{photo.desc}}" />
+                        ng-src="http://localhost:8000/{{photo.short_path}}"
+                        alt="{{photo.pretty_name}}" />
             </div>
 
             <!-- extra navigation controls -->
             <ul class="nav" style="min-height: 70px;">
-                <li ng-repeat="photo in data.photos" 
+                <li ng-repeat="photo in data.selectedPhotos" 
                     ng-class="{'active':isActive($index)}">
                     
-                    <img alt="{{photo.desc}}" title="{{photo.desc}}" 
-                        ng-src="{{photo.src}}" 
+                    <img alt="{{photo.pretty_name}}" title="{{photo.pretty_name}}" 
+                        ng-src="http://localhost:8000/{{photo.short_path}}" 
                         ng-click="showPhoto($index);" />
 
                 </li>
@@ -38,7 +64,7 @@
 
         <a class="button"  href="#" ng-click="loadPhotos()">Load Photos </a>
 
-        <span ng-bind="data.photos.length"></span> 
+        <span ng-bind="data.selectedPhotos.length"></span> 
         <span ng-bind="_Index"></span>
 
     </div>
