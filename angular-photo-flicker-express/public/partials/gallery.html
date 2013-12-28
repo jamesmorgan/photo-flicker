@@ -5,8 +5,7 @@
 
     <!-- enumerate all photos -->
     <img class="slide"
-            ng-repeat="photo in photos"  
-            ng-swipe-right="showPrev()" 
+            ng-repeat="photo in data.photos"
             ng-swipe-left="showNext()" 
             ng-show="isActive($index)"
             ng-src="{{photo.src}}"
@@ -14,7 +13,7 @@
 
     <!-- extra navigation controls -->
     <ul class="nav">
-        <li ng-repeat="photo in photos" 
+        <li ng-repeat="photo in data.photos" 
             ng-class="{'active':isActive($index)}">
             
             <img alt="{{photo.desc}}" title="{{photo.desc}}" 

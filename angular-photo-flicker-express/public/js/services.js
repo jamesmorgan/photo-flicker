@@ -15,30 +15,34 @@ angular.module('myApp.services', [])
 	 * Photo Loading Service
 	 */
 
-	.factory('SelectionService', ['$log', function($log) {
+	.factory('Data', ['$log', function($log) {
 		
-		var photoMetaData = [];
-		var categoriesMetaData = [];
+		// var photoMetaData = [];
+		// var categoriesMetaData = [];
 
 		return {
-			getSelectedPhotos: function(){
-				$log.info("getSelectedPhotos : " + photoMetaData);
-				return photoMetaData;
-			},
+
+			photos: [],
+			categories: [],
+
+			// getSelectedPhotos: function(){
+			// 	$log.info("getSelectedPhotos : " + photoMetaData);
+			// 	return photoMetaData;
+			// },
 
 			setSelectedPhotos: function(data){
 				$log.info("setSelectedPhotos : " + data);
-				photoMetaData = data;
+				this.photos = data;
 			},
 
-			getCategories: function(){
-				$log.info("getCategories : " + categoriesMetaData);
-				return categoriesMetaData;
-			},
+			// getCategories: function(){
+			// 	$log.info("getCategories : " + categoriesMetaData);
+			// 	return categoriesMetaData;
+			// },
 
 			setCategories: function(data){
 				$log.info("setCategories : " + data);
-				categoriesMetaData = data;
+				this.categories = data;
 			},
 		}
 	}])

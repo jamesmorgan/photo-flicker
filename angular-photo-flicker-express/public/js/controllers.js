@@ -3,18 +3,18 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
-  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'SelectionService', 
-    function($scope, $log, GalleryService, SelectionService) {
+  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 
+    function($scope, $log, GalleryService, Data) {
 
       	$scope.world = "world!";
 
-        $scope.categories = [];
+        $scope.data = Data;
 
         $scope.init = function(){
             GalleryService.loadCategories()
                 .success(function(data, status, headers) {
                     $log.info("loadCategories Success - status : " + status + " data : " + data);
-                    $scope.categories = data
+                    Data.setCategories(data);
                 })
                 .error(function(data, status, headers){
                     $log.info("Failure - status : " + status);
@@ -32,11 +32,11 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }
 
   }])
-  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'GalleryService', 'SelectionService', 
-    function($rootScope, $scope, $log, GalleryService, SelectionService) {
+  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'GalleryService', 'Data', 
+    function($rootScope, $scope, $log, GalleryService, Data) {
 
         // Set of Photos
-        $scope.photos = SelectionService.getSelectedPhotos();
+        $scope.data = Data;
 
         // initial image index
         $scope._Index = 0;
@@ -54,12 +54,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
         $scope.loadPhotos = function (){
 
-            $scope.photos = [];
-
             GalleryService.loadPhotos()
                 .success(function(data, status, headers) {
                     $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);
-                    SelectionService.setSelectedPhotos(data);
+                    Data.setSelectedPhotos(data);
                 })
                 .error(function(data, status, headers){
                     $log.info("Failure - status : " + status);
