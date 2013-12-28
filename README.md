@@ -3,19 +3,30 @@ photo-flicker
 
 A simple browser based image gallery application built using angular-js and node.js - WIP 
 
+#### Project inception:
+
+* To be used to display pieces of work by a tattoo artist
+* Should be hosted internally on a single low resource machine/laptop
+* Can be used on an Phone/Tablet and also on a wall mounted TV using a random/rotate mode.  
+
 #### Requirements
 
-* nodejs : v0.10.15
-* express : ~3.4.7
-* angular-js - 1.2.6 - http://angularjs.org/
+* [node js](http://nodejs.org) : v0.10.15
+* [express js](http://expressjs.com) : ~3.4.7
+* [angular js](http://angularjs.org) - 1.2.6
 * angular-touch
-* angular-annimate
+* angular-animate
+* angular-ui
 * jquery - 2.0.3
 * twitter-bootstrap - 3.0.3
 
 #### Running the Application
 
+##### Install me
+
 * `npm install express --save` - install dependencies
+
+##### Start me up
 
 * `nodejs app.js` when inside `angular-photo-flicker-express`
 
@@ -25,18 +36,23 @@ A simple browser based image gallery application built using angular-js and node
 
 * Http Server runs at: `http://localhost:8000/`
 
-* Photo Gallery = `img/gallery/photos/{{category}}/{{photos}}`
+##### Configuration
 
-#### Thoughts/Ideas
+* All photos and sub folder located in `/img/gallery/photos/{{category}}/{{photos}}` will be scanned - Max two level folder structure.
+* Refresh app on F5 or click `Refresh` button
 
-* Users can flick through the site using ideas
-* Responsive css
+#### TODO
 
-* User can manage the folder structure
-* Based on filename
-* filename matches database schema which can hold meta data
-* Possible folder meta data based on simple JSON format file which is inside each folder
-
-* Run on node.js
-* Multi session
-* No security required
+* Get real test data
+* Boostrap page design with header, footer, content, navigation panel etc
+* New data field for images to display name with .jpg/.png etc
+* Swipe actions on images
+* Small form factor mode - Gestures/swipe enabled, 
+* Wall Mounted - rotate images randomly, full screen?
+* Full screen mode - http://sindresorhus.com/screenfull.js/
+* Responsive css for tablets and TV screens
+* Metadata files - possible options for details about category loaded?
+* Search?
+* Highlight errors?
+* Hosting - is it needed?
+* Tests?

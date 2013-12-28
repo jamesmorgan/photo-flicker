@@ -31,12 +31,11 @@ if (app.get('env') === 'development') {
 // production only
 if (app.get('env') === 'production') {
   // TODO
-};
+}
 
 options = {
-	followLinks: false,
-	filters: ["Temp", "_Temp", "meta-data"] // directories with these keys will be skipped
-};
+	filters: [".json", "meta-data"]
+}
 
 /**
  * Routes
@@ -130,7 +129,7 @@ app.get('*', function(req, res) {
 // ------------------------------------------------------------------
 
 var logErrors = function(err, req, res, next) {
-	console.error(err.stack);
+	console.error(err.stack);`
 	next(err);
 }
 

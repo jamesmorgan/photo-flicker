@@ -15,6 +15,8 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }
 
         $scope.loadCategories = function (){
+            Data.selectedSubCategory = -1;
+            Data.selectedCategory = -1;
             GalleryService.loadCategories()
                 .success(function(data, status, headers) {
                     $log.info("loadCategories Success - status : " + status + " data : " + data);

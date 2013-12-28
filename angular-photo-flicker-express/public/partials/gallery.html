@@ -2,27 +2,37 @@
 <div class="row" ng-init="init()">
 
     <!-- Padding column Left --> 
-    <div class="col-xs-3 col-md-2">
+    <div class="col-xs-5 col-sm-5 col-md-3">
        
-        <div ng-controller="NavMenuCtrl" ng-init="init()" >
+        <div ng-controller="NavMenuCtrl" ng-init="init()" class="text-center">
             <!-- <br /><pre>{{data.categories | json}}</pre> -->
 
-            <a class="button" href="#" ng-click="init()">Reload Categories</a>
-
-            <h6>Category</h6>
-            <select ng-model="data.selectedCategory">
+            <h2><small>Make a Selection</small></h2>
+            <hr />
+            
+            <h4>Category <span class="badge">{{data.categories.children.length || "0"}}</span></h4>
+            <select ng-model="data.selectedCategory"
+                    class="form-control input-lg"
+                    ng-disabled="data.categories.children.length == 0"
+                    ng-change="clearSubCategory()">
                 <option ng-repeat="c in data.categories.children" value="{{$index}}">
                     {{c.pretty_name}}
                 </option>
             </select>
 
-            <h6>Sub Category</h6>
+            <h5>Sub Category <span class="badge">{{data.categories.children[data.selectedCategory].children.length || "0"}}</span></h5>
             <select ng-model="data.selectedSubCategory"
-                    ng-change="showImages()">
+                    ng-change="showImages()"
+                    class="form-control"
+                    ng-disabled="data.selectedCategory == -1">
                 <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
                     {{c.pretty_name}}
                 </option>
             </select>
+
+            <hr />
+            <button class="btn btn-sm btn-info btn-block" type="button" ng-click="init()">Refresh Categories</button>
+            <hr />
 
             <br /><pre>{{data.selectedCategory | json}}</pre>
             <br /><pre>{{data.selectedSubCategory | json}}</pre>
@@ -32,36 +42,10 @@
     </div>
 
     <!-- START : Main Column --> 
-    <div class="col-xs-6 col-md-8">
+    <div class="col-xs-7 col-sm-7 col-md-9">
 
-        <!-- <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3><span ng-bind="data.selectedCategoryName"></span> <small ng-bind="data.selectedSubCategoryName"></small></h3>
-            </div>
-            <div class="panel-body" style="min-height: 530px;">
-
-                    <img class="center-block" 
-                        ng-repeat="photo in data.selectedPhotos"
-                        ng-swipe-left="showNext()" 
-                        ng-show="isActive($index)"
-                        ng-src="{{photo.short_path}}"
-                        alt="{{photo.pretty_name}}" />
-            </div> -->
-
-            <!-- extra navigation controls -->
-            <!-- ul class="nav" style="min-height: 70px;">
-                <li ng-repeat="photo in data.selectedPhotos" 
-                    ng-class="{'active':isActive($index)}">
-                    
-                    <img alt="{{photo.pretty_name}}" title="{{photo.pretty_name}}" 
-                        ng-src="{{photo.short_path}}" 
-                        ng-click="showPhoto($index);" />
-
-                </li>
-            </ul> -->
-
-            <span ng-bind="data.selectedPhotos.length"></span> 
-            <span ng-bind="_Index"></span>
+<!--             <span ng-bind="data.selectedPhotos.length"></span> 
+            <span ng-bind="_Index"></span> -->
 
             <div class="panel panel-default">
 
@@ -72,7 +56,7 @@
                 <div class="panel-body" style="min-height: 530px;">
                     <carousel interval="5000">
                         <slide ng-repeat="photo in data.selectedPhotos" active="photo.active">
-                        <img ng-src="{{photo.short_path}}" style="margin:auto;">
+                        <img ng-src="{{photo.short_path}}" style="margin:auto;" class="img-responsive img-thumbnail">
                         <div class="carousel-caption">
                             <h4>Slide {{$index}}</h4>
                             <p>{{photo.pretty_name}}</p>
@@ -88,7 +72,7 @@
     <!-- END : Main Column --> 
 
     <!-- Padding column Right --> 
-    <div class="col-xs-3 col-md-2">
+    <div class="col-xs-2 col-sm-2 col-md-1">
         
     </div>
 </div>
