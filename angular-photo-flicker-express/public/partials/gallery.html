@@ -31,7 +31,21 @@
             </select>
 
             <hr />
-            <button class="btn btn-sm btn-info btn-block" type="button" ng-click="init()">Refresh Categories</button>
+            <button class="btn btn-sm btn-info btn-block" type="button" ng-click="init()">
+                 <span class="glyphicon glyphicon-refresh"></span> Refresh Categories
+            </button>
+            <hr />
+
+            <button class="btn btn-sm btn-info btn-block" type="button" 
+                    ng-click="goFullScreen()" ng-show="!fullScreenMode">
+                <span class="glyphicon glyphicon-fullscreen"></span> Full Screen
+            </button>
+
+            <button class="btn btn-sm btn-info btn-block" type="button" 
+                    ng-click="exitFullScreen()" ng-show="fullScreenMode">
+                <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
+            </button>
+
             <hr />
 
             <br /><pre>{{data.selectedCategory | json}}</pre>
@@ -54,7 +68,7 @@
                 </div>
                 
                 <div class="panel-body" style="min-height: 530px;">
-                    <carousel interval="5000">
+                    <carousel interval="sliderInterval">
                         <slide ng-repeat="photo in data.selectedPhotos" active="photo.active">
                         <img ng-src="{{photo.short_path}}" style="margin:auto;" class="img-responsive img-thumbnail">
                         <div class="carousel-caption">

@@ -129,7 +129,7 @@ app.get('*', function(req, res) {
 // ------------------------------------------------------------------
 
 var logErrors = function(err, req, res, next) {
-	console.error(err.stack);`
+	console.error(err.stack);
 	next(err);
 }
 

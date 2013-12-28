@@ -43,13 +43,15 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
+* Full screen mode - http://sindresorhus.com/screenfull.js/
+* Click on Image give full screen version
+
 * Get real test data
 * Boostrap page design with header, footer, content, navigation panel etc
 * New data field for images to display name with .jpg/.png etc
 * Swipe actions on images
 * Small form factor mode - Gestures/swipe enabled, 
 * Wall Mounted - rotate images randomly, full screen?
-* Full screen mode - http://sindresorhus.com/screenfull.js/
 * Responsive css for tablets and TV screens
 * Metadata files - possible options for details about category loaded?
 * Search?

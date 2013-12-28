@@ -6,7 +6,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
   .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 
     function($scope, $log, GalleryService, Data) {
 
-      	$scope.world = "world!";
+      	$scope.fullScreenMode = false;
 
         $scope.data = Data;
 
@@ -32,39 +32,28 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             Data.updatedPhotoSelection();
         }
 
-        $scope.selectCategory = function(index){
-            $log.info("Category clicked - " + index);
-            $log.info("Sub Category clicked - parentIndex = " + $scope.data.categories.children[index]);
+        $scope.goFullScreen = function(){
+            if (screenfull.enabled) {
+                $scope.fullScreenMode = true;
+                screenfull.request($('.container')[0]); // TODO fix black backgroup
+            }
         }
 
-        $scope.selectSubCategory = function(parentIndex, index){
-            $log.info("Sub Category clicked - parentIndex = " + parentIndex + " | index : " + index);
-            $log.info("Sub Category Objects - parentIndex = " + $scope.data.categories.children[parentIndex] + " | index : " + $scope.data.categories.children[parentIndex].children[index]);
+        $scope.exitFullScreen = function(){
+            screenfull.exit()
+            $scope.fullScreenMode = false;
         }
 
   }])
   .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'GalleryService', 'Data', 
     function($rootScope, $scope, $log, GalleryService, Data) {
 
-        // Set of Photos
         $scope.data = Data;
 
-        // initial image index
-        $scope._Index = 0;
+        $scope.sliderInterval = 30000;
 
         $scope.init = function(){
             $scope.loadPhotos();
-        }
-
-        // if a current image is the same as requested image
-        $scope.isActive = function (index) {
-            return $scope._Index === index;
-        }
-
-        // show a certain image
-        $scope.showPhoto = function (index) {
-            $scope._Index = index;
-            $log.info("Index : " + $scope._Index);
         }
 
         $scope.loadPhotos = function (){
