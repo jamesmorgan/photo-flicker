@@ -9,7 +9,8 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.controllers'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.when('/gallery', { templateUrl: 'partials/gallery.html', controller: 'PhotoGalleryCtrl' });
   $routeProvider.otherwise({redirectTo: '/gallery'});
+  $locationProvider.html5Mode(false);
 }]);

@@ -57,13 +57,6 @@ var static_photos = [
 	{src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
 ];
 
-var static_categories = [
-	{category: 'Catergory A', dir: 'CatergoryA'},
-	{category: 'Catergory B', dir: 'CatergoryB'},
-	{category: 'Catergory C', dir: 'CatergoryC'},
-	{category: 'Catergory D', dir: 'CatergoryD'}
-];
-
 // Gallery API
 app.get('/api/gallery/load/all', 
 	function(req, res) {
@@ -72,24 +65,13 @@ app.get('/api/gallery/load/all',
 );
 
 // Category API
-app.get('/api/category/all', 
-	function(req, res) {
-		var dirTreeList = dirAndFileTree('public/img/gallery/photos')
-		// console.log(dirTreeList) 
-		// console.log(dirTreeList.children) 
-		// console.log(dirTreeList.children[0].children[0]) 
-    	responseJson(res, static_categories);	
-	}
-);
-
-
-app.get('/api/category/all/simple', 
+app.get('/api/category/load/all', 
 	function(req, res) {
 
 		var dirTreeList = loadFolderTree('public/img/gallery/photos')
 		console.log(dirTreeList) 
-		// console.log(dirTreeList.children) 
-		// console.log(dirTreeList.children[0].children[0]) 
+		console.log(dirTreeList.children) 
+		console.log(dirTreeList.children[0].children[0]) 
 
     	responseJson(res, dirTreeList);	
 	}

@@ -14,10 +14,37 @@ angular.module('myApp.services', [])
 	/**
 	 * Photo Loading Service
 	 */
-	.factory('PhotoService', ['$http', function($http) {
+
+	.factory('SelectionService', ['$log', function($log) {
+		
+		var photoMetaData = [];
+		var categoriesMetaData = [];
+
+		return {
+			getSelectedPhotos: function(){
+				$log.info("getSelectedPhotos : " + photoMetaData);
+				return photoMetaData;
+			},
+
+			setSelectedPhotos: function(data){
+				$log.info("setSelectedPhotos : " + data);
+				photoMetaData = data;
+			},
+
+			getCategories: function(){
+				$log.info("getCategories : " + categoriesMetaData);
+				return categoriesMetaData;
+			},
+
+			setCategories: function(data){
+				$log.info("setCategories : " + data);
+				categoriesMetaData = data;
+			},
+		}
+	}])
+	.factory('GalleryService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
-
 		var GALLERY_API = "/api/gallery";
 		var CATEGORY_API = "/api/category";
 
@@ -39,17 +66,17 @@ angular.module('myApp.services', [])
 	        		"Accept": "application/json", 
 	        		"Content-Type": "application/json" 
 	        	},
-	        	url: HTTP_ENDPOINT + CATEGORY_API + "/all/simple"
+	        	url: HTTP_ENDPOINT + CATEGORY_API + "/load/all"
 	      	});
 	    }
 
 	    return {
-	      loadPhotos: function() { 
-	      	return doLoadAllPhotos();
-	      },
+	      	loadPhotos: function() { 
+		      	return doLoadAllPhotos();
+  			},
 
-	      loadCategories: function(){
-	      	return doLoadAllCategories();
-	      }
+			loadCategories: function(){
+				return doLoadAllCategories();
+			}
     	};
   	}]);
