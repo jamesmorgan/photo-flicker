@@ -66,14 +66,6 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }
 
         $scope.loadPhotos = function (){
-            // GalleryService.loadPhotos()
-            //     .success(function(data, status, headers) {
-            //         $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);
-            //         Data.setSelectedPhotos(data);
-            //     })
-            //     .error(function(data, status, headers){
-            //         $log.info("Failure - status : " + status);
-            //     });
             GalleryService.loadAllPhotos()
                     .success(function(data, status, headers) {
                         $log.info("loadPhotos Success - status : " + status + " | length : " + data.length + " data : " + data);

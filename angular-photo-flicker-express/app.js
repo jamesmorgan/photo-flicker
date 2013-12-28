@@ -48,38 +48,11 @@ options = {
 // ------------------------------- api ------------------------------
 // ------------------------------------------------------------------
 
-var static_photos = [
-	{src: 'http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg', desc: 'Image 01'},
-	{src: 'http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg', desc: 'Image 02'},
-	{src: 'http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg', desc: 'Image 03'},
-	{src: 'http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg', desc: 'Image 04'},
-	{src: 'http://farm9.staticflickr.com/8315/7918425138_b739f0df53_b.jpg', desc: 'Image 05'},
-	{src: 'http://farm9.staticflickr.com/8461/7918425364_fe6753aa75_b.jpg', desc: 'Image 06'}
-];
-
 // Gallery API
-app.get('/api/gallery/load/static', 
-	function(req, res) {
-    	responseJson(res, static_photos);
-	}
-);
-
 app.get('/api/gallery/load/all', 
 	function(req, res) {
 		var fullList = dirAndFileTree('public/img/gallery/photos')
-
-		console.log(fullList.children)
-
     	responseJson(res, fullList);
-	}
-);
-
-app.get('/api/gallery/load/:category/:subcategory', 
-	function(req, res) {
-		console.log(req.params.category);
-		console.log(req.params.subcategory);
-		
-    	responseJson(res, static_photos);
 	}
 );
 
@@ -87,9 +60,9 @@ app.get('/api/gallery/load/:category/:subcategory',
 app.get('/api/category/load/all', 
 	function(req, res) {
 		var dirTreeList = loadFolderTree('public/img/gallery/photos')
-		console.log(dirTreeList) 
-		console.log(dirTreeList.children) 
-		console.log(dirTreeList.children[0].children[0]) 
+		// console.log(dirTreeList) 
+		// console.log(dirTreeList.children) 
+		// console.log(dirTreeList.children[0].children[0]) 
     	responseJson(res, dirTreeList);	
 	}
 );

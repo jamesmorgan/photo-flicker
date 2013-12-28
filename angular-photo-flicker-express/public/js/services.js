@@ -51,24 +51,10 @@ angular.module('myApp.services', [])
 		var GALLERY_API = "/api/gallery";
 		var CATEGORY_API = "/api/category";
 
-	    var doLoadStaticPhotos = function() {
-	    	return $http({
-	        	method: 'GET',
-	        	headers: {
-	        		"Accept": "application/json", 
-	        		"Content-Type": "application/json" 
-	        	},
-	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/static"
-	      	});
-	    }
-
 	    var doLoadAllCategories = function() {
 	    	return $http({
 	        	method: 'GET',
-	        	headers: {
-	        		"Accept": "application/json", 
-	        		"Content-Type": "application/json" 
-	        	},
+	        	headers: { "Accept": "application/json", "Content-Type": "application/json" },
 	        	url: HTTP_ENDPOINT + CATEGORY_API + "/load/all"
 	      	});
 	    }
@@ -76,10 +62,7 @@ angular.module('myApp.services', [])
 	    var doLoadAllPhotos = function() {
 	    	return $http({
 	        	method: 'GET',
-	        	headers: {
-	        		"Accept": "application/json", 
-	        		"Content-Type": "application/json" 
-	        	},
+	        	headers: { "Accept": "application/json", "Content-Type": "application/json" },
 	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
 	      	});
 	    }
@@ -88,10 +71,6 @@ angular.module('myApp.services', [])
     		loadAllPhotos: function(){
 				return doLoadAllPhotos();
     		},
-
-	      	loadPhotos: function() { 
-		      	return doLoadStaticPhotos();
-  			},
 
 			loadCategories: function(){
 				return doLoadAllCategories();
