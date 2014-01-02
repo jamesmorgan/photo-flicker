@@ -3,10 +3,10 @@
 /* Controllers */
 
 angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
-  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 
-    function($scope, $log, GalleryService, Data) {
+  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 'ScreenfullService', 
+    function($scope, $log, GalleryService, Data, ScreenfullService) {
 
-      	$scope.fullScreenMode = false;
+      	$scope.screenService = ScreenfullService;
 
         $scope.data = Data;
 
@@ -33,15 +33,11 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }
 
         $scope.goFullScreen = function(){
-            if (screenfull.enabled) {
-                $scope.fullScreenMode = true;
-                screenfull.request($('.container')[0]); // TODO fix black backgroup
-            }
+            ScreenfullService.fullScreen($('.container')[0]);
         }
 
         $scope.exitFullScreen = function(){
-            screenfull.exit()
-            $scope.fullScreenMode = false;
+            ScreenfullService.exit();
         }
 
   }])

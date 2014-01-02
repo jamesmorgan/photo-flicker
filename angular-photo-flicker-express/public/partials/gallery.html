@@ -36,13 +36,17 @@
             </button>
             <hr />
 
+            <span ng-model="screenService.inFullScreen"></span>
+
             <button class="btn btn-sm btn-info btn-block" type="button" 
-                    ng-click="goFullScreen()" ng-show="!fullScreenMode">
+                    ng-click="goFullScreen()" 
+                    ng-show="screenService.inFullScreen == false">
                 <span class="glyphicon glyphicon-fullscreen"></span> Full Screen
             </button>
 
             <button class="btn btn-sm btn-info btn-block" type="button" 
-                    ng-click="exitFullScreen()" ng-show="fullScreenMode">
+                    ng-click="exitFullScreen()" 
+                    ng-show="screenService.inFullScreen == true">
                 <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
             </button>
 

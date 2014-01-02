@@ -85,4 +85,31 @@ angular.module('myApp.services', [])
 				return doLoadAllCategories();
 			}
     	};
-  	}]);
+  	}])
+	/**
+	 * Screen Full Service Wrapper
+	 */
+	.factory('ScreenfullService', ['$document', '$rootScope', '$log', function($document, $rootScope, $log) {
+    	
+    	var screenfullService = {
+    		inFullScreen: false
+    	};
+
+		screenfullService.fullScreen = function (element) {
+            if (screenfull.enabled) {
+                screenfull.request(element); // TODO fix black backgroup
+            }
+	    };
+
+		screenfullService.exit = function () {
+            screenfull.exit(); 
+	    };
+
+		$document.on(screenfull.raw.fullscreenchange, function () {
+			screenfullService.inFullScreen = screenfull.isFullscreen;
+			$log.debug('In Full Screen Mode ' + screenfullService.inFullScreen);
+			$rootScope.$apply();
+		});
+
+	    return screenfullService;
+	}]);
