@@ -9,18 +9,25 @@
 
             <h2><small>Make a Selection</small></h2>
             <hr />
+
+            <h4>Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h4>
+            <input class="form-control ng-valid ng-dirty ng-valid-editable" type="text" 
+                  placeholder="Start typing to search...." 
+                  ng-model="asyncSelected">
+
+            <hr />
             
-            <h4>Category <span class="badge pull-right">{{data.categories.children.length || "0"}}</span></h4>
+            <h4>Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
             <select ng-model="data.selectedCategory"
-                    class="form-control input-lg"
+                    class="form-control input-lg" 
                     ng-disabled="data.categories.children.length == 0"
                     ng-change="clearSubCategory()">
                 <option ng-repeat="c in data.categories.children" value="{{$index}}">
                     {{c.pretty_name}}
                 </option>
             </select>
-
-            <h5>Sub Category <span class="badge pull-right">{{data.categories.children[data.selectedCategory].children.length || "0"}}</span></h5>
+ 
+            <h5>Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
             <select ng-model="data.selectedSubCategory"
                     ng-change="showImages()"
                     class="form-control"
@@ -30,10 +37,12 @@
                 </option>
             </select>
 
-            <hr />
+            <br />
+
             <button class="btn btn-sm btn-info btn-block" type="button" ng-click="init()">
                  <span class="glyphicon glyphicon-refresh"></span> Refresh Categories
             </button>
+            
             <hr />
 
             <span ng-model="screenService.inFullScreen"></span>

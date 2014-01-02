@@ -11,14 +11,14 @@ A simple browser based image gallery application built using angular-js and node
 
 #### Requirements
 
-* [node js](http://nodejs.org) : v0.10.15
-* [express js](http://expressjs.com) : ~3.4.7
-* [angular js](http://angularjs.org) - 1.2.6
+* [node-js](http://nodejs.org) : v0.10.15
+* [express-js](http://expressjs.com) : ~3.4.7
+* [angular-js](http://angularjs.org) - 1.2.6
+* [angular-ui](http://angular-ui.github.io/bootstrap/) - 0.9.0
+* [bootstrap](http://getbootstrap.com/) - 3.0.3
 * angular-touch
 * angular-animate
-* angular-ui
 * jquery - 2.0.3
-* twitter-bootstrap - 3.0.3
 
 #### Running the Application
 
