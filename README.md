@@ -44,7 +44,6 @@ A simple browser based image gallery application built using angular-js and node
 ##### Tech
 
 * HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/
-
 * Each photo JSON Object you get the following fields
 ````json
 	{
@@ -69,11 +68,9 @@ A simple browser based image gallery application built using angular-js and node
 * Wall Mounted - rotate images randomly, full screen?
 * Responsive css for tablets and TV screens
 * Metadata files - possible options for details about category loaded?
-* Search?
 * Highlight errors?
 * Hosting - is it needed?
 * Tests?
-
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesmorgan/photo-flicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

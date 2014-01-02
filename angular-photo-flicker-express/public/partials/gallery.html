@@ -10,7 +10,7 @@
             <h2><small>Make a Selection</small></h2>
             <hr />
             
-            <h4>Category <span class="badge">{{data.categories.children.length || "0"}}</span></h4>
+            <h4>Category <span class="badge pull-right">{{data.categories.children.length || "0"}}</span></h4>
             <select ng-model="data.selectedCategory"
                     class="form-control input-lg"
                     ng-disabled="data.categories.children.length == 0"
@@ -20,7 +20,7 @@
                 </option>
             </select>
 
-            <h5>Sub Category <span class="badge">{{data.categories.children[data.selectedCategory].children.length || "0"}}</span></h5>
+            <h5>Sub Category <span class="badge pull-right">{{data.categories.children[data.selectedCategory].children.length || "0"}}</span></h5>
             <select ng-model="data.selectedSubCategory"
                     ng-change="showImages()"
                     class="form-control"
@@ -68,7 +68,10 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <h3><span ng-bind="data.selectedCategoryName"></span> <small ng-bind="data.selectedSubCategoryName"></small></h3>
+                    <h3>
+                      <span class="label label-primary" ng-bind="data.selectedCategoryName"></span> 
+                      <small class="label label-success" ng-bind="data.selectedSubCategoryName"></small>
+                    </h3>
                 </div>
                 
                 <div class="panel-body" style="min-height: 530px;">
