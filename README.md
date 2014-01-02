@@ -43,9 +43,9 @@ A simple browser based image gallery application built using angular-js and node
 
 ##### Tech
 
-* HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/
+* HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/ - V1.1.1
 * Each photo JSON Object you get the following fields
-````json
+````
 	{
 	    full_path: "",
 	    short_path: "",

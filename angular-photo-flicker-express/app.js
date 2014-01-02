@@ -56,15 +56,6 @@ app.get('/api/gallery/load/all',
 );
 
 // Category API
-app.get('/api/category/load/all', 
-	function(req, res) {
-		var dirTreeList = loadFolderTree('public/img/gallery/photos')
-		// console.log(dirTreeList) 
-		// console.log(dirTreeList.children) 
-		// console.log(dirTreeList.children[0].children[0]) 
-    	responseJson(res, dirTreeList);	
-	}
-);
 
 var responseJson = function(res, data){
 	res.status(200);
@@ -99,19 +90,6 @@ var remove_extension = function(value) {
         value = value.replace(item, "")
     });
     return value;
-}
-
-var loadFolderTree = function(filename){
-    var stats = fs.lstatSync(filename);
-    if (stats.isDirectory()) {
-	    var info = buildFileInfo(filename, stats);
-        info.type = "folder";
-        info.children = fs.readdirSync(filename).map(function(child) {
-            return loadFolderTree(filename + '/' + child);
-        });
-		return info;
-	}
-	return;
 }
 
 var dirAndFileTree = function(filename) {

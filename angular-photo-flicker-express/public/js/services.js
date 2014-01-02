@@ -15,8 +15,9 @@ angular.module('myApp.services', [])
 		return {
             
 			photos: [],
-			categories: [],
 
+			categories: [],
+			
 			selectedPhotos: [],
 
 			selectedCategory: -1,
@@ -25,13 +26,9 @@ angular.module('myApp.services', [])
             selectedCategoryName: "Category",
 			selectedSubCategoryName: "Sub Category",            
 
-			setSelectedPhotos: function(data){
-				$log.info("setSelectedPhotos : " + data);
+			setMetaData: function(data){
+				$log.info("setMetaData : " + data);
 				this.photos = data;
-			},
-
-			setCategories: function(data){
-				$log.info("setCategories : " + data);
 				this.categories = data;
 			},
 
@@ -58,15 +55,6 @@ angular.module('myApp.services', [])
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
 		var GALLERY_API = "/api/gallery";
-		var CATEGORY_API = "/api/category";
-
-	    var doLoadAllCategories = function() {
-	    	return $http({
-	        	method: 'GET',
-	        	headers: { "Accept": "application/json", "Content-Type": "application/json" },
-	        	url: HTTP_ENDPOINT + CATEGORY_API + "/load/all"
-	      	});
-	    }
 
 	    var doLoadAllPhotos = function() {
 	    	return $http({
@@ -77,13 +65,9 @@ angular.module('myApp.services', [])
 	    }
 
 	    return {
-    		loadAllPhotos: function(){
+    		lookupPhotoData: function(){
 				return doLoadAllPhotos();
     		},
-
-			loadCategories: function(){
-				return doLoadAllCategories();
-			}
     	};
   	}])
 	/**
