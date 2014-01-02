@@ -61,3 +61,7 @@ A simple browser based image gallery application built using angular-js and node
 * Highlight errors?
 * Hosting - is it needed?
 * Tests?
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesmorgan/photo-flicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
