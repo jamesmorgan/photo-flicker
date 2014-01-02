@@ -122,7 +122,7 @@ angular.module('myApp.services', [])
 		$document.on(screenfull.raw.fullscreenerror, function () {
 			screenfullService.inFullScreen = false;
 			screenfullService.fullscreenError = true;
-			$log.debug('Unable to get into fullscreen mode');
+			$log.debug('Unable to get into fullscreen mode, enabled = ' + screenfull.enabled);
 			$rootScope.$apply();
 		});
 

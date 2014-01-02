@@ -79,12 +79,26 @@ var buildFileInfo = function(filename, stats){
             full_path: filename,
             short_path: filename.replace("public/",""),
             name: path.basename(filename),
-            pretty_name: path.basename(filename).replace("_", " "),
+            pretty_name_without_extension: clean(remove_extension(path.basename(filename))),
+            pretty_name: clean(path.basename(filename)),
             modified_time: stats.mtime.getTime(),
             create_time: stats.ctime.getTime(),
             size: stats.size
         };
     return info;
+}
+
+var clean = function(value){
+    return value.replace("_", " ");
+}
+
+var EXTENSIONS = ['.jpg', '.jpeg', '.png'];
+
+var remove_extension = function(value) {
+    EXTENSIONS.forEach(function(item) {
+        value = value.replace(item, "")
+    });
+    return value;
 }
 
 var loadFolderTree = function(filename){
