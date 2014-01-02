@@ -52,9 +52,9 @@
 
             <hr />
 
-            <br /><pre>{{data.selectedCategory | json}}</pre>
+<!--             <br /><pre>{{data.selectedCategory | json}}</pre>
             <br /><pre>{{data.selectedSubCategory | json}}</pre>
-
+ -->
         </div>
 
     </div>
@@ -74,7 +74,10 @@
                 <div class="panel-body" style="min-height: 530px;">
                     <carousel interval="sliderInterval">
                         <slide ng-repeat="photo in data.selectedPhotos" active="photo.active">
-                        <img ng-src="{{photo.short_path}}" style="margin:auto;" class="img-responsive img-thumbnail">
+                        <img ng-src="{{photo.short_path}}" 
+                            ng-click="fullScreenPicture()"
+                            style="margin:auto;" 
+                            class="img-responsive img-thumbnail">
                         <div class="carousel-caption">
                             <h4>Slide {{$index}}</h4>
                             <p>{{photo.pretty_name}}</p>

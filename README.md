@@ -41,9 +41,12 @@ A simple browser based image gallery application built using angular-js and node
 * All photos and sub folder located in `/img/gallery/photos/{{category}}/{{photos}}` will be scanned - Max two level folder structure.
 * Refresh app on F5 or click `Refresh` button
 
+##### Tech
+
+* HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/
+
 #### TODO
 
-* Full screen mode - http://sindresorhus.com/screenfull.js/
 * Click on Image give full screen version
 
 * Get real test data

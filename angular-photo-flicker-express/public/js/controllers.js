@@ -40,6 +40,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             ScreenfullService.exit();
         }
 
+        $scope.fullScreenPicture = function(element){
+            ScreenfullService.fullScreen(element)
+        }
+
   }])
   .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$log', 'GalleryService', 'Data', 
     function($rootScope, $scope, $log, GalleryService, Data) {

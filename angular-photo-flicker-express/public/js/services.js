@@ -92,12 +92,13 @@ angular.module('myApp.services', [])
 	.factory('ScreenfullService', ['$document', '$rootScope', '$log', function($document, $rootScope, $log) {
     	
     	var screenfullService = {
-    		inFullScreen: false
+    		inFullScreen: false,
+    		fullscreenError: false
     	};
 
 		screenfullService.fullScreen = function (element) {
             if (screenfull.enabled) {
-                screenfull.request(element); // TODO fix black backgroup
+                screenfull.request(element);
             }
 	    };
 
@@ -105,9 +106,23 @@ angular.module('myApp.services', [])
             screenfull.exit(); 
 	    };
 
+		screenfullService.toggle = function (element) {
+            if (screenfull.enabled) {
+	            screenfull.toggle(element); 
+            }
+	    };
+
 		$document.on(screenfull.raw.fullscreenchange, function () {
 			screenfullService.inFullScreen = screenfull.isFullscreen;
+			screenfullService.fullscreenError = false;
 			$log.debug('In Full Screen Mode ' + screenfullService.inFullScreen);
+			$rootScope.$apply();
+		});
+
+		$document.on(screenfull.raw.fullscreenerror, function () {
+			screenfullService.inFullScreen = false;
+			screenfullService.fullscreenError = true;
+			$log.debug('Unable to get into fullscreen mode');
 			$rootScope.$apply();
 		});
 
