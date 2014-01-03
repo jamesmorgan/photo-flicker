@@ -16,9 +16,7 @@ A simple browser based image gallery application built using angular-js and node
 * [angular-js](http://angularjs.org) - 1.2.6
 * [angular-ui](http://angular-ui.github.io/bootstrap/) - 0.9.0
 * [bootstrap](http://getbootstrap.com/) - 3.0.3
-* angular-touch
-* angular-animate
-* jquery - 2.0.3
+* [angular-carousel](https://github.com/revolunet/angular-carousel)
 
 #### Running the Application
 
@@ -41,9 +39,10 @@ A simple browser based image gallery application built using angular-js and node
 * All photos and sub folder located in `/img/gallery/photos/{{category}}/{{photos}}` will be scanned - Max two level folder structure.
 * Refresh app on F5 or click `Refresh` button
 
-##### Tech
+##### Tech Stuff
 
 * HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/ - V1.1.1
+* Buffered AngularJS Photo Carousel - https://github.com/revolunet/angular-carousel
 * Each photo JSON Object you get the following fields
 ````
 	{
