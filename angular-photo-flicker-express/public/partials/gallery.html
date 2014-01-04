@@ -4,7 +4,7 @@
     <!-- Padding column Left --> 
     <div class="col-xs-5 col-sm-5 col-md-3">
        
-        <div ng-controller="NavMenuCtrl" class="text-center">
+        <div ng-controller="NavMenuCtrl">
             <!-- <br /><pre>{{data.categories | json}}</pre> -->
 
             <h2><small>Make a Selection</small></h2>
@@ -74,9 +74,6 @@
     <!-- START : Main Column --> 
     <div class="col-xs-7 col-sm-7 col-md-9">
 
-<!--             <span ng-bind="data.selectedPhotos.length"></span> 
-            <span ng-bind="_Index"></span> -->
-
             <div class="panel panel-default">
 
                 <div class="panel-heading">
@@ -86,35 +83,49 @@
                     </h3>
                 </div>
                 
-                <!-- <div class="panel-body" style="min-height: 530px;"> -->
+                <div class="panel-body min-carousel-body">
 
-                <div class="panel-body" style="min-height: 530px;"
-                    rn-carousel-infinite 
-                    rn-carousel-buffered
-                    rn-carousel-watch
-                    rn-carousel-indicator
-                    rn-carousel-next="next(image, carouselCollection.index)" 
-                    rn-carousel-prev="prev(image, carouselCollection.index)" 
-                    ng-click="fullScreenPicture()"
-                    rn-carousel-current="image"> 
+                    <div class="carousel-container"
+                        ng-show="shouldShowCarousel()"                
+                        rn-carousel-infinite 
+                        rn-carousel-buffered
+                        rn-carousel-watch
+                        rn-carousel-indicator
+                        rn-carousel-next="next(image, carouselCollection.index)" 
+                        rn-carousel-prev="prev(image, carouselCollection.index)" 
+                        ng-click="fullScreenPicture()"
+                        rn-carousel-current="image"> 
 
-                    <img ng-src="{{'http://localhost:8000/' + image.short_path}}" 
-                            style="margin:auto;" 
-                            class="img-responsive img-thumbnail">
+                        <img ng-src="{{'http://localhost:8000/' + image.short_path}}" 
+                                style="margin:auto;" 
+                                class="img-responsive img-thumbnail">
 
-                    <div class="carousel-caption">
-                        
-                        <div ng-show="debugCarousel">
-                            <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
-                            <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
-                            <h5 ng-bind="'#items: ' + carouselCollection.items.length"></h5>
-                            <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
-                            <pre>{{ image | json}}</pre>
+                        <div class="carousel-caption">
+                            <!-- Show debug info about carousel and image -->
+                            <div ng-show="debugCarousel">
+                                <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
+                                <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
+                                <h5 ng-bind="'#items: ' + carouselCollection.items.length"></h5>
+                                <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
+                                <pre>{{ image | json}}</pre>
+                            </div>
+                            <h3>{{image.pretty_name_without_extension}}</h3>
                         </div>
-                        <h4>{{image.pretty_name_without_extension}}</h4>
+                        
                     </div>
 
+                    <ul class="pager" ng-show="shouldShowCarousel()">
+                        <li class="previous"
+                            ng-class="{disabled: disabledPreviousCarousel()}">
+                            <a ng-click="previousImage()">&larr; Previous</a>
+                        </li>
+                        <li class="next disabled"
+                            ng-class="{disabled: disabledNextCarousel()}">
+                            <a ng-click="nextImage()">Next &rarr;</a>
+                        </li>
+                    </ul>
                 </div>
+
 
            </div>
 

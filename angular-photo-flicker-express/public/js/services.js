@@ -26,6 +26,14 @@ angular.module('myApp.services', [])
             selectedCategoryName: "Category",
 			selectedSubCategoryName: "Sub Category",            
 
+        	resetModel: function(){
+	            this.selectedSubCategory = -1;
+            	this.selectedCategory = -1;
+            	this.selectedCategoryName = "Category";
+				this.selectedSubCategoryName = "Sub Category";
+				this.selectedPhotos = [];
+        	},
+
 			setMetaData: function(data){
 				$log.info("setMetaData : " + data);
 				this.photos = data;
@@ -51,7 +59,7 @@ angular.module('myApp.services', [])
 	/**
 	 * Gallery Loading Service
 	 */
-	.factory('GalleryService', ['$rootScope', '$http', '$log', function($rootScope, $http, $log) {
+	.factory('GalleryService', ['$rootScope', '$http', '$log', 'Data', function($rootScope, $http, $log, Data) {
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
 		var GALLERY_API = "/api/gallery";
@@ -66,6 +74,7 @@ angular.module('myApp.services', [])
 
 	    return {
     		lookupPhotoData: function(){
+	            Data.resetModel();
 				return doLoadAllPhotos();
     		},
     	};

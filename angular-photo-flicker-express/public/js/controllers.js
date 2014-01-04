@@ -40,65 +40,79 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             return addresses;
         };
   }])
-  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'Data', 'CollectionManager',
-    function($rootScope, $scope, $q, $timeout, $log, GalleryService, Data, CollectionManager) {
+  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'Data',
+    function($rootScope, $scope, $q, $timeout, $log, GalleryService, Data) {
 
-
-        $scope.debugCarousel = true;
+        $scope.debugCarousel = false;
         $scope.data = Data;
-        $scope.image = undefined;
-
-        $scope.sliderInterval = 30000;
 
         $scope.init = function() {
-            CollectionManager.debug = true;
-            Data.selectedSubCategory = -1;
-            Data.selectedCategory = -1;
             GalleryService.lookupPhotoData()
                 .success(function(data, status, headers) {
                     $log.info("lookupPhotoData Success - status : " + status + " data : " + data);
                     Data.setMetaData(data);
-                    $scope.image = Data.selectedPhotos[0];
                 })
                 .error(function(data, status, headers){
                     $log.info("Failure - status : " + status);
                 });
         }
 
+        $scope.shouldShowCarousel = function(){
+            var value = $scope.data != null && $scope.data.selectedPhotos.length != 0;
+            $log.info("shouldShowCarousel : " + value)
+            return value;
+        }
+
+        $scope.disabledPreviousCarousel = function(){
+            var value = $scope.currentIndex == -1 || ($scope.data.selectedPhotos[$scope.currentIndex - 1] == undefined);
+            $log.info("disabledPreviousCarousel : " + value)
+            return value;
+       }
+
+        $scope.disabledNextCarousel = function(){
+            var value =  $scope.currentIndex == -1 || ($scope.data.selectedPhotos[$scope.currentIndex + 1] == undefined);
+            $log.info("disabledNextCarousel : " + value)
+            return value;
+        }
+
+        $scope.currentIndex = -1;
+
         $scope.next = function(item, currentIndex){
-            if(Data.selectedPhotos == null 
-                || Data.selectedPhotos.length == 0
-                || Data.selectedPhotos[currentIndex + 1] == undefined){
+            $scope.currentIndex = currentIndex;
+            if($scope.data.selectedPhotos == null 
+                || $scope.data.selectedPhotos.length == 0
+                || $scope.data.selectedPhotos[currentIndex] == undefined){
                 $log.info("Next : No photos yet, unable to show one!")
                 return;
             }
 
-            $log.info("next : currentIndex = " + currentIndex + " length = " + Data.selectedPhotos.length);
-            $scope.image = Data.selectedPhotos[currentIndex + 1];
+            $log.info("next : currentIndex = " + currentIndex + " length = " + $scope.data.selectedPhotos.length);
+            $scope.image = $scope.data.selectedPhotos[currentIndex];
             var defer = $q.defer();
 
             $timeout(function() {
-                $log.info($scope.image);
+                $log.info('http://localhost:8000/' + $scope.image.short_path);
                 defer.resolve($scope.image);
             });
             return defer;
         }
 
         $scope.previous = function(item, currentIndex){
-            if(Data.selectedPhotos == null 
-                || Data.selectedPhotos.length == 0
-                || Data.selectedPhotos[currentIndex - 1] == undefined){
+            $scope.currentIndex = currentIndex;
+            if($scope.data.selectedPhotos == null 
+                || $scope.data.selectedPhotos.length == 0
+                || $scope.data.selectedPhotos[currentIndex - 1] == undefined){
                 $log.info("Previous : No photos yet, unable to show one!")
                 return;
             }
 
-            $log.info("previous : currentIndex = " + currentIndex + " length = " + Data.selectedPhotos.length);
+            $log.info("previous : currentIndex = " + currentIndex + " length = " + $scope.data.selectedPhotos.length);
 
-            $scope.image = Data.selectedPhotos[currentIndex - 1];
+            $scope.image = $scope.data.selectedPhotos[currentIndex - 1];
             var defer = $q.defer();
 
             $timeout(function() {
-                $log.info($scope.image);
+                $log.info('http://localhost:8000/' + $scope.image.short_path);
                  defer.resolve($scope.image);
            });
             return defer;
