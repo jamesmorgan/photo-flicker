@@ -60,20 +60,24 @@ A simple browser based image gallery application built using angular-js and node
 #### TODO
 
 * Reset carousel after new category selected
-* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
-* http://www.jorisooms.be/testing-your-node-api-with-supertest/
-* Refactor categories into a seperate object without photos
-* FavIcon?
 * Click on Image give full screen version
+* Refactor categories into a seperate object without photos
 * Basic search
-* Get real test data
-* Swipe actions on images
 * Small form factor mode - Gestures/swipe enabled, 
+
+* Black backgroud on fullscrene mode in android
+
+* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
 * Responsive css for tablets and TV screens
+
+* http://www.jorisooms.be/testing-your-node-api-with-supertest/
+* FavIcon?
+* Get real test data
 * Metadata files - possible options for details about category loaded?
 * Highlight errors?
 * Hosting - is it needed?
 * Tests?
+* Docs / Info?
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesmorgan/photo-flicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

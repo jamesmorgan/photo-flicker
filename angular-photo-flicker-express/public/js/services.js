@@ -77,7 +77,6 @@ angular.module('myApp.services', [])
 	.factory('GalleryService', ['$rootScope', '$http', '$log', 'Data', 
 		function($rootScope, $http, $log, Data) {
 
-		var HTTP_ENDPOINT = "http://localhost:8000";
 		var GALLERY_API = "/api/gallery";
 
 	    var doLoadAllPhotos = function() {
@@ -87,7 +86,7 @@ angular.module('myApp.services', [])
 	        		"Accept": "application/json", 
 	        		"Content-Type": "application/json" 
 	        	},
-	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
+	        	url: GALLERY_API + "/load/all"
 	      	});
 	    }
 

@@ -93,7 +93,7 @@
                             rn-carousel-watch
                             rn-carousel-index="currentIndex">
                             <li ng-repeat="photo in data.selectedPhotos">
-                                <img ng-src="{{'http://localhost:8000/' + photo.short_path}}" 
+                                <img ng-src="{{photo.short_path}}" 
                                 style="margin:auto;" 
                                 class="img-responsive img-thumbnail">
                                 
