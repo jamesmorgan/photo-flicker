@@ -59,11 +59,7 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Fix initial load
 * Reset carousel after new category selected
-* Next/Previous buttons implementation
-* Next/Previous styling
-* Disabled next/previous when reached end of photos
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * http://www.jorisooms.be/testing-your-node-api-with-supertest/
 * Refactor categories into a seperate object without photos

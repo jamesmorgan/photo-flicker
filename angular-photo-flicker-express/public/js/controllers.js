@@ -33,7 +33,8 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
   .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'Data',
     function($rootScope, $scope, $q, $timeout, $log, GalleryService, Data) {
 
-        $scope.debugCarousel = false;
+        $scope.debugCarousel = true;
+        $scope.currentIndex = -1;
         $scope.data = Data;
 
         $scope.init = function() {
@@ -41,63 +42,28 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         };
 
         $scope.shouldShowCarousel = function(){
-            var value = $scope.data != null && $scope.data.selectedPhotos.length != 0;
-            $log.info("shouldShowCarousel : " + value)
-            return value;
+            return $scope.data != null && $scope.data.selectedPhotos.length != 0;
         };
 
         $scope.disabledPreviousCarousel = function(){
-            var value = $scope.currentIndex == -1 || ($scope.data.selectedPhotos[$scope.currentIndex - 1] == undefined);
-            $log.info("disabledPreviousCarousel : " + value)
-            return value;
+            return $scope.currentIndex == 0 || $scope.currentIndex == -1;
         };
 
         $scope.disabledNextCarousel = function(){
-            var value =  $scope.currentIndex == -1 || ($scope.data.selectedPhotos[$scope.currentIndex + 1] == undefined);
-            $log.info("disabledNextCarousel : " + value)
-            return value;
+            return $scope.currentIndex == -1 || $scope.currentIndex >= ($scope.data.selectedPhotos.length-1);
         };
 
-        $scope.currentIndex = -1;
-
-        $scope.next = function(item, currentIndex){
-            $scope.currentIndex = currentIndex;
-            if($scope.data.selectedPhotos == null 
-                || $scope.data.selectedPhotos.length == 0
-                || $scope.data.selectedPhotos[currentIndex] == undefined){
-                $log.info("Next : No photos yet, unable to show one!")
+        $scope.previous = function(){
+            if($scope.disabledPreviousCarousel()){
                 return;
             }
-
-            $log.info("next : currentIndex = " + currentIndex + " length = " + $scope.data.selectedPhotos.length);
-            $scope.image = $scope.data.selectedPhotos[currentIndex];
-            var defer = $q.defer();
-
-            $timeout(function() {
-                $log.info('http://localhost:8000/' + $scope.image.short_path);
-                defer.resolve($scope.image);
-            });
-            return defer;
+            $scope.currentIndex = $scope.currentIndex - 1;    
         };
 
-        $scope.previous = function(item, currentIndex){
-            $scope.currentIndex = currentIndex;
-            if($scope.data.selectedPhotos == null 
-                || $scope.data.selectedPhotos.length == 0
-                || $scope.data.selectedPhotos[currentIndex - 1] == undefined){
-                $log.info("Previous : No photos yet, unable to show one!")
+        $scope.next = function(){
+            if($scope.disabledNextCarousel()){
                 return;
             }
-
-            $log.info("previous : currentIndex = " + currentIndex + " length = " + $scope.data.selectedPhotos.length);
-
-            $scope.image = $scope.data.selectedPhotos[currentIndex - 1];
-            var defer = $q.defer();
-
-            $timeout(function() {
-                $log.info('http://localhost:8000/' + $scope.image.short_path);
-                 defer.resolve($scope.image);
-           });
-            return defer;
+            $scope.currentIndex = $scope.currentIndex + 1;    
         };
 }]);
