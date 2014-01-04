@@ -66,6 +66,7 @@ A simple browser based image gallery application built using angular-js and node
 * Disabled next/previous when reached end of photos
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * http://www.jorisooms.be/testing-your-node-api-with-supertest/
+* Refactor categories into a seperate object without photos
 * FavIcon?
 * Click on Image give full screen version
 * Basic search
@@ -80,4 +81,3 @@ A simple browser based image gallery application built using angular-js and node
 * Tests?
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesmorgan/photo-flicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

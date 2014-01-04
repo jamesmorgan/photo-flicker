@@ -15,13 +15,11 @@ angular.module('myApp.services', [])
 		return {
             
 			photos: [],
-
 			categories: [],
-			
-			selectedPhotos: [],
 
+			selectedPhotos: [],
 			selectedCategory: -1,
-            selectedSubCategory: -1,
+   			selectedSubCategory: -1,
 
             selectedCategoryName: "Category",
 			selectedSubCategoryName: "Sub Category",            
@@ -34,14 +32,16 @@ angular.module('myApp.services', [])
 				this.selectedPhotos = [];
         	},
 
-			setMetaData: function(data){
-				$log.info("setMetaData : " + data);
+			updateMetaData: function(data){
+				$log.info("Recieved Photo Data : " + data);
 				this.photos = data;
 				this.categories = data;
 			},
 
 			updatedPhotoSelection: function(){
-				$log.info("updatedPhotoSelection - Category: " + this.selectedCategory + " | Sub Category: " + this.selectedSubCategory);
+				if(this.selectedCategory == -1 || this.selectedSubCategory == -1){
+					return;
+				}
 				var category = this.photos.children[this.selectedCategory];
 				var subCategory = category.children[this.selectedSubCategory];
 
@@ -49,17 +49,33 @@ angular.module('myApp.services', [])
 				this.selectedSubCategoryName = subCategory.pretty_name;
 
 				this.selectedPhotos = subCategory.children; 
+				$log.info("Photo Selection Updated : " + this.toStringSelected());
 			},
 
+            queryPhotos: function(value){
+	            var cleanLookup = val.toLowerCase().replace("_","").replace(" ","");
+	            $log.info("Lookup - " + cleanLookup);
+	            var addresses = [];
+	            for(var cat in Data.photos.children){
+	                var cleanVal = Data.photos.children[cat].pretty_name.toLowerCase().replace("_","");
+	                if(cleanVal.contains(cleanLookup)){
+	                    addresses.push(Data.photos.children[cat].pretty_name)
+	                }
+	            }
+	            return addresses;
+            },
+
 			toStringSelected: function(){
-				return "Category: " + this.selectedCategory + " | Sub Category: " + this.selectedSubCategory;
+				return "Category: [" + this.selectedCategoryName + "], Index: [" + this.selectedCategory +"], " + 
+					 	"Sub Category: [" + this.selectedSubCategoryName + "], Index: [" + this.selectedSubCategory +"]";
 			},
 		}
 	}])
 	/**
 	 * Gallery Loading Service
 	 */
-	.factory('GalleryService', ['$rootScope', '$http', '$log', 'Data', function($rootScope, $http, $log, Data) {
+	.factory('GalleryService', ['$rootScope', '$http', '$log', 'Data', 
+		function($rootScope, $http, $log, Data) {
 
 		var HTTP_ENDPOINT = "http://localhost:8000";
 		var GALLERY_API = "/api/gallery";
@@ -67,7 +83,10 @@ angular.module('myApp.services', [])
 	    var doLoadAllPhotos = function() {
 	    	return $http({
 	        	method: 'GET',
-	        	headers: { "Accept": "application/json", "Content-Type": "application/json" },
+	        	headers: { 
+	        		"Accept": "application/json", 
+	        		"Content-Type": "application/json" 
+	        	},
 	        	url: HTTP_ENDPOINT + GALLERY_API + "/load/all"
 	      	});
 	    }
@@ -75,7 +94,14 @@ angular.module('myApp.services', [])
 	    return {
     		lookupPhotoData: function(){
 	            Data.resetModel();
-				return doLoadAllPhotos();
+				doLoadAllPhotos()
+					.success(function(data, status, headers) {
+	                    $log.info("lookupPhotoData Success - status : " + status + " data : " + data);
+	                    Data.updateMetaData(data);
+	                })
+	                .error(function(data, status, headers){
+	                    $log.info("Failure - status : " + status);
+	                });
     		},
     	};
   	}])

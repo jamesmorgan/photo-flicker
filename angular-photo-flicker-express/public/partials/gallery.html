@@ -32,7 +32,6 @@
  
             <h5>Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
             <select ng-model="data.selectedSubCategory"
-                    ng-change="showImages()"
                     class="form-control"
                     ng-disabled="data.selectedCategory == -1">
                 <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
