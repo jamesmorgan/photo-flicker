@@ -11,7 +11,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         $scope.screenService = ScreenfullService;
 
         $scope.$watch('data.selectedCategory', function(newVal, oldVal){
-            // Reset in preperation for the sub category selection
+            // Reset in preparation for the sub category selection
             Data.selectedPhotos = [];
             Data.selectedSubCategory = -1;
         }, true);
@@ -28,16 +28,12 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             ScreenfullService.exit();
         };
 
-        $scope.fullScreenPicture = function(element){
-            ScreenfullService.fullScreen(element);
-        };
-
         $scope.lookupPhotos = function(val) {
             return Data.queryPhotos(val);
         };
   }])
-  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'Data',
-    function($rootScope, $scope, $q, $timeout, $log, GalleryService, Data) {
+  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'ScreenfullService', 'Data',
+    function($rootScope, $scope, $q, $timeout, $log, GalleryService, ScreenfullService, Data) {
 
         $scope.debugCarousel = true;
         $scope.currentIndex = -1;
@@ -72,4 +68,9 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             }
             $scope.currentIndex = $scope.currentIndex + 1;    
         };
+
+        $scope.goFullScreenImage = function(){
+            ScreenfullService.toggle($('.carousel-container')[0]);
+        };
+
 }]);

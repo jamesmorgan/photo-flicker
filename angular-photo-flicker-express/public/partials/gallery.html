@@ -93,8 +93,9 @@
                             rn-carousel-index="currentIndex">
                             <li ng-repeat="photo in data.selectedPhotos">
                                 <img ng-src="{{photo.short_path}}" 
-                                style="margin:auto;" 
-                                class="img-responsive img-thumbnail">
+                                    ng-dblclick="goFullScreenImage()"
+                                    style="margin:auto;" 
+                                    class="img-responsive img-thumbnail">
                                 
                                 <div class="carousel-caption">
                                     <div ng-show="debugCarousel">

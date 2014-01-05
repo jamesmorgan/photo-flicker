@@ -43,7 +43,7 @@ angular.module('myApp.services', [])
 			},
 
 			updatedPhotoSelection: function(){
-				if(this.selectedCategory == -1 || this.selectedSubCategory == -1){
+				if(!this.hasValidCategorySelection()){
 					return;
 				}
 				var category = this.photos.children[this.selectedCategory];
@@ -137,14 +137,14 @@ angular.module('myApp.services', [])
 		$document.on(screenfull.raw.fullscreenchange, function () {
 			screenfullService.inFullScreen = screenfull.isFullscreen;
 			screenfullService.fullscreenError = false;
-			$log.debug('In Full Screen Mode ' + screenfullService.inFullScreen);
+			$log.debug('In full screen mode [' + screenfullService.inFullScreen + ']');
 			$rootScope.$apply();
 		});
 
 		$document.on(screenfull.raw.fullscreenerror, function () {
 			screenfullService.inFullScreen = false;
 			screenfullService.fullscreenError = true;
-			$log.debug('Unable to get into fullscreen mode, enabled = ' + screenfull.enabled);
+			$log.debug('Unable to get into full screen mode, enabled [' + screenfull.enabled + ']');
 			$rootScope.$apply();
 		});
 
