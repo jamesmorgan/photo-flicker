@@ -7,32 +7,35 @@
   <link rel="stylesheet" href="css/bootstrap/bootstrap.css"/>
   <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css"/>
 
-  <link rel="stylesheet" href="css/app.css"/>
-  <link rel="stylesheet" href="css/gallery.css"/>
-
   <link rel="stylesheet" href="css/angular-carousel.css" />
 
+  <link rel="stylesheet" href="css/app.css"/>
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  
   <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <![endif]-->
+
 </head>
 
 <body ng-cloak>
 
   <div id="wrap">
     <div class="container">
+      
       <div ng-view>
       </div>
-    </div>
-  </div>
 
-  <div id="footer">
-    <div class="container">
-      <p class="text-muted">Created By James Morgan - <abbr title="Version">v</abbr> <span app-version> </span></p> 
-    </div>
-  </div>
+      <div id="footer" class="hidden-xs">
+        <p class="text-muted">
+          Created By <a href="http://www.morgan-design.com/profile" target="_blank">James Morgan</a> 
+          | <abbr title="Version">v:</abbr> <span app-version> </span></p> 
+      </div>
 
+    </div>
+  
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
