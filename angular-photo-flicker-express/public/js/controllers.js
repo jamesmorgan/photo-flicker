@@ -21,7 +21,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         }, true);
 
         $scope.goFullScreen = function(){
-            ScreenfullService.fullScreen($('.container')[0]);
+            ScreenfullService.fullScreen($('#main-window-container')[0]);
         };
 
         $scope.exitFullScreen = function(){
@@ -70,6 +70,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         };
 
         $scope.goFullScreenImage = function(){
+            // alert("Double Tap");
             ScreenfullService.toggle($('.carousel-container')[0]);
         };
 

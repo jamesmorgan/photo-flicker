@@ -45,3 +45,13 @@
   min-height: 630px;  
 }
 
+/* NOT WORKING - Added by AngularJS to style being double tapped*/
+.carousel-container.ng-click-active {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  box-shadow: 10px 10px 10px white;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
