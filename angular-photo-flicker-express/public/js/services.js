@@ -57,13 +57,13 @@ angular.module('myApp.services', [])
 			},
 
             queryPhotos: function(value){
-	            var cleanLookup = val.toLowerCase().replace("_","").replace(" ","");
+	            var cleanLookup = value.toLowerCase().replace("_","").replace(" ","");
 	            $log.info("Lookup - " + cleanLookup);
 	            var addresses = [];
-	            for(var cat in Data.photos.children){
-	                var cleanVal = Data.photos.children[cat].pretty_name.toLowerCase().replace("_","");
+	            for(var cat in this.photos.children){
+	                var cleanVal = this.photos.children[cat].pretty_name.toLowerCase().replace("_","");
 	                if(cleanVal.contains(cleanLookup)){
-	                    addresses.push(Data.photos.children[cat].pretty_name)
+	                    addresses.push(this.photos.children[cat].pretty_name)
 	                }
 	            }
 	            return addresses;
