@@ -12,30 +12,39 @@
             <span class="visible-md"><abbr title="Display Mode .md">mode md</abbr></span>
             <span class="visible-lg"><abbr title="Display Mode .lg">mode lg</abbr></span>         
 
-            <h2><small>Make a Selection</small></h2>
+            <h3 class="visible-lg visible-md">Make a Selection</h3>
+            <h4 class="visible-sm">Make a Selection</h4>
             <hr />
 
-            <h4>Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h4>
+            <h4 class="visible-lg visible-md visible-sm">Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h4>
             
-            <pre>Model: {{asyncSelected | json}}</pre>
+            <!-- <pre>Model: {{asyncSelected | json}}</pre> -->
 
-            <input class="form-control" type="text" 
-                  placeholder="Start typing to search...." 
-                  ng-model="asyncSelected"
-                  typeahead="photo for photo in lookupPhotos($viewValue) | filter:$viewValue" >
-            <hr />
-            
-            <h4>Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
+            <div class="input-group">
+                <input class="form-control" type="text" 
+                      placeholder="Start typing to search...." 
+                      ng-model="asyncSelected"
+                      typeahead="photo for photo in lookupPhotos($viewValue) | filter:$viewValue" >
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+           
+             <hr class="visible-xs"/>
+
+            <h4 class="visible-lg visible-md visible-sm">Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
 
             <select ng-model="data.selectedCategory"
-                    class="form-control input-lg" 
+                    class="form-control" 
                     ng-disabled="data.categories.children.length == 0">
                 <option ng-repeat="c in data.categories.children" value="{{$index}}">
                     {{c.pretty_name}}
                 </option>
             </select>
+
+            <hr class="visible-xs"/>
  
-            <h5>Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
+            <h4 class="visible-lg visible-md visible-sm">Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h4>
 
             <select ng-model="data.selectedSubCategory"
                     class="form-control"
@@ -72,6 +81,7 @@
 <!--        <br /><pre>{{data.selectedCategory | json}}</pre>
             <br /><pre>{{data.selectedSubCategory | json}}</pre>
  -->
+
         </div>
 
     </div>
@@ -146,8 +156,4 @@
     </div>
     <!-- END : Main Column --> 
 
-    <!-- Padding column Right --> 
-<!--     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-0">
-        
-    </div> -->
 </div>

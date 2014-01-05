@@ -41,36 +41,6 @@ body{
   background-color: rgba(255,255,255,0);
 }
 
-/*@media screen and (max-width: @screen-xs-max) { 
-  h2 {
-    font-size:50px;
-  }  
-  h3 {
-    font-size:40px;
-  } 
-  h4 {
-    font-size:30px;
-  } 
-  h4 {
-    font-size:20px;
-  } 
-}
-@media screen and (min-width: @screen-sm-min)  { 
-  h2 {
-    font-size:50px;
-  }  
-  h3 {
-    font-size:40px;
-  } 
-  h4 {
-    font-size:30px;
-  } 
-  h4 {
-    font-size:20px;
-  } 
-}*/
-
-
 */
 /* NOT WORKING - Added by AngularJS to style being double tapped*/
 .rn-carousel-container div.ng-click-active {
