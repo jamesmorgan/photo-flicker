@@ -60,10 +60,6 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Check responsiveness of css mobile 
-* Check responsiveness of css tablet
-* Check responsiveness of css PC
-
 * Refactor categories into a seperate object without photos
 * Basic search
 

@@ -2,10 +2,15 @@
 <div class="row" ng-init="init()">
 
     <!-- Padding column Left --> 
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
        
         <div ng-controller="NavMenuCtrl">
             <!-- <br /><pre>{{data.categories | json}}</pre> -->
+            
+            <span class="visible-xs"><abbr title="Display Mode .xs">mode xs</abbr></span>
+            <span class="visible-sm"><abbr title="Display Mode .sm">mode sm</abbr></span>
+            <span class="visible-md"><abbr title="Display Mode .md">mode md</abbr></span>
+            <span class="visible-lg"><abbr title="Display Mode .lg">mode lg</abbr></span>         
 
             <h2><small>Make a Selection</small></h2>
             <hr />
@@ -21,6 +26,7 @@
             <hr />
             
             <h4>Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
+
             <select ng-model="data.selectedCategory"
                     class="form-control input-lg" 
                     ng-disabled="data.categories.children.length == 0">
@@ -30,6 +36,7 @@
             </select>
  
             <h5>Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
+
             <select ng-model="data.selectedSubCategory"
                     class="form-control"
                     ng-disabled="data.selectedCategory == -1">
@@ -83,7 +90,6 @@
                 
                 <div class="panel-body">
 
-
                     <div class="carousel-container"
                         ng-show="shouldShowCarousel()"> 
 
@@ -118,7 +124,9 @@
                         Length : {{data.selectedPhotos.length}} | 
                         Current : {{currentIndex}} | 
                     </div>
+                </div>
 
+                <div class="panel-footer">
                     <ul class="pager" ng-show="shouldShowCarousel()">
                         <li class="previous"
                             ng-class="{disabled: disabledPreviousCarousel()}">
@@ -129,9 +137,7 @@
                             <a ng-click="next()">Next &rarr;</a>
                         </li>
                     </ul>
-
                 </div>
-
 
            </div>
 
@@ -141,7 +147,7 @@
     <!-- END : Main Column --> 
 
     <!-- Padding column Right --> 
-    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-0">
+<!--     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-0">
         
-    </div>
+    </div> -->
 </div>
