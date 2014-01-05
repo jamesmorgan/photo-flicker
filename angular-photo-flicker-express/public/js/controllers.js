@@ -32,12 +32,24 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             return Data.queryPhotos(val);
         };
   }])
-  .controller('PhotoGalleryCtrl', ['$rootScope', '$scope', '$q', '$timeout', '$log', 'GalleryService', 'ScreenfullService', 'Data',
-    function($rootScope, $scope, $q, $timeout, $log, GalleryService, ScreenfullService, Data) {
+  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'Data',
+    function($scope, $document, $log, GalleryService, ScreenfullService, Data) {
 
         $scope.debugCarousel = true;
         $scope.currentIndex = -1;
         $scope.data = Data;
+
+        angular.element($document).bind("keyup", function(event) {
+            if (event.which === 37) {
+                $log.info("Move left")
+                $scope.previous();
+                $scope.$apply();
+            } else if (event.which === 39) {
+                $log.info("Move right")
+                $scope.next();
+                $scope.$apply();
+            }
+        });
 
         $scope.init = function() {
             GalleryService.lookupPhotoData();
@@ -71,7 +83,8 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
         $scope.goFullScreenImage = function(){
             // alert("Double Tap");
-            ScreenfullService.toggle($('.carousel-container')[0]);
+            // ScreenfullService.toggle($('.rn-carousel-container')[0]);
+            ScreenfullService.toggle($('#main-window-container')[0]);
         };
 
 }]);
