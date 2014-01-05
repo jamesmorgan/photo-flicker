@@ -23,8 +23,7 @@
             <h4>Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
             <select ng-model="data.selectedCategory"
                     class="form-control input-lg" 
-                    ng-disabled="data.categories.children.length == 0"
-                    ng-change="clearSubCategory()">
+                    ng-disabled="data.categories.children.length == 0">
                 <option ng-repeat="c in data.categories.children" value="{{$index}}">
                     {{c.pretty_name}}
                 </option>

@@ -10,7 +10,13 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
 
         $scope.screenService = ScreenfullService;
 
-        $scope.$watch('[data.selectedCategory, data.selectedSubCategory]',function(newVal, oldVal){
+        $scope.$watch('data.selectedCategory', function(newVal, oldVal){
+            // Reset in preperation for the sub category selection
+            Data.selectedPhotos = [];
+            Data.selectedSubCategory = -1;
+        }, true);
+
+        $scope.$watch('data.selectedSubCategory', function(newVal, oldVal){
             Data.updatedPhotoSelection();
         }, true);
 

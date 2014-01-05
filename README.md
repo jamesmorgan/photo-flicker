@@ -59,17 +59,17 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Reset carousel after new category selected
 * Click on Image give full screen version
 * Refactor categories into a seperate object without photos
 * Basic search
 * Small form factor mode - Gestures/swipe enabled, 
 
-* Black backgroud on fullscrene mode in android
+* Black backgroud on fullscreen mode in android
 
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
 * Responsive css for tablets and TV screens
+* Navigate using keyboard next/previous - keyboard.js angular bindings
 
 * http://www.jorisooms.be/testing-your-node-api-with-supertest/
 * FavIcon?

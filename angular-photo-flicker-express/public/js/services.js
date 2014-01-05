@@ -32,8 +32,12 @@ angular.module('myApp.services', [])
 				this.selectedPhotos = [];
         	},
 
+        	hasValidCategorySelection: function(){
+                return this.selectedCategory != -1 && this.selectedSubCategory != -1;
+            },
+
 			updateMetaData: function(data){
-				$log.info("Recieved Photo Data : " + data);
+				$log.info("Received Photo Data : " + data);
 				this.photos = data;
 				this.categories = data;
 			},
