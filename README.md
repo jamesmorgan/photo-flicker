@@ -16,6 +16,7 @@ A simple browser based image gallery application built using angular-js and node
 * [angular-js](http://angularjs.org) - 1.2.6
 * [angular-ui](http://angular-ui.github.io/bootstrap/) - 0.9.0
 * [angular-touch](http://docs.angularjs.org/api/ngTouch)
+* [angular-animate](http://docs.angularjs.org/api/ngAnimate)
 * [angular-carousel](https://github.com/revolunet/angular-carousel)
 * [bootstrap](http://getbootstrap.com/) - 3.0.3
 
@@ -63,6 +64,8 @@ A simple browser based image gallery application built using angular-js and node
 * Basic search
 * Auto complete search?
 * How to display search on mobile?
+
+* Show/hide options when in xs mode?
 
 * Black background when in fullscreen on both Android and When clicking image
 * Full screen image not working on android

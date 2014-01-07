@@ -35,7 +35,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
   .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'Data',
     function($scope, $document, $log, GalleryService, ScreenfullService, Data) {
 
-        $scope.debugCarousel = false;
+        $scope.debugMode = false;
         $scope.currentIndex = -1;
         $scope.data = Data;
 
