@@ -71,6 +71,7 @@ A simple browser based image gallery application built using angular-js and node
 * Full screen image not working on android
 * Double click on mobile not working - look @ http://eightmedia.github.io/hammer.js/  && http://www.ng-newsletter.com/posts/angular-on-mobile.html
 
+* Session Favourites - on every session start the ones you are interested in.
 * Refactor categories into a seperate object without photos
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
