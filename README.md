@@ -29,9 +29,9 @@ A simple browser based image gallery application built using angular-js and node
 
 ##### Start me up
 
-* `nodejs app.js` when inside `angular-photo-flicker-express`
+* `nodejs app.js` when inside `photo-flicker-web`
 
-* _OR_ `DEBUG=express:* nodejs app.js` to DEBUG when inside `angular-photo-flicker-express`
+* _OR_ `DEBUG=express:* nodejs app.js` to DEBUG when inside `photo-flicker-web`
 
 * _OR_ `./start-server.js` from project route
 

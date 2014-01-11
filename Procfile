@@ -1,1 +1,1 @@
-web: nodejs angular-photo-flicker-express/app.js
+web: nodejs photo-flicker-web/app.js
