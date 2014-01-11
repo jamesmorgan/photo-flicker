@@ -16,9 +16,7 @@
             <h4 class="visible-sm">Make a Selection</h4>
             <hr class="visible-lg visible-md visible-sm" />
 
-            <div id="options_container"
-                class="animate-show"
-                ng-show="!collapsed">
+            <div id="options_container" ng-show="!collapsed">
 
                 <h4 class="visible-lg visible-md visible-sm">Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h4>
                 
@@ -34,7 +32,7 @@
                     </span>
                 </div>
                
-                 <hr class="visible-xs"/>
+                 <hr class="visible-sm visible-xs"/>
 
                 <h4 class="visible-lg visible-md visible-sm">Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
 
@@ -63,39 +61,41 @@
             <!-- START : Buttons and Actions -->
             <div id="action_buttons_container">
 
-                <button class="btn btn-sm btn-info btn-block" type="button" 
+                <hr ng-show="!collapsed"/>
+
+                <button class="btn btn-sm btn-info" type="button" 
                     ng-show="debugMode" ng-click="init()">
                      <span class="glyphicon glyphicon-refresh"></span> Refresh Categories
                 </button>
-                
-                <span ng-model="screenService.inFullScreen"></span>
 
-                <button class="btn btn-sm btn-info" type="button" 
-                        ng-click="goFullScreen()" 
-                        ng-show="screenService.inFullScreen == false">
-                    <span class="glyphicon glyphicon-fullscreen"></span> Full Screen
-                </button>
+                <span class="pull-left">
+                    <button class="btn btn-sm btn-info " type="button" 
+                            ng-click="goFullScreen()" 
+                            ng-show="screenService.inFullScreen == false">
+                        <span class="glyphicon glyphicon-fullscreen"></span> Full Screen
+                    </button>
 
-                <button class="btn btn-sm btn-info pull-left" type="button" 
-                        ng-click="exitFullScreen()" 
-                        ng-show="screenService.inFullScreen == true">
-                    <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
-                </button>
+                    <button class="btn btn-sm btn-info" type="button" 
+                            ng-click="exitFullScreen()" 
+                            ng-show="screenService.inFullScreen == true">
+                        <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
+                    </button>
+                </span>
 
+                <span class="pull-right visible-sm visible-xs">
+                    <button type="button" class="btn btn-sm btn-default pull-right"
+                        ng-click="collapsed = true"
+                        ng-show="!collapsed">
+                        <span class="glyphicon glyphicon-chevron-up"></span> Collapse
+                    </button>
 
-                <button type="button" class="btn btn-sm btn-default pull-right"
-                    ng-click="collapsed = true"
-                    ng-show="!collapsed">
-                    <span class="glyphicon glyphicon-chevron-up"></span> Collapse
-                </button>
-
-                <button type="button" class="btn btn-sm btn-default pull-right"
-                    ng-click="collapsed = false"
-                    ng-show="collapsed">
-                    <span class="glyphicon glyphicon-chevron-down"></span> Expand
-                </button>
-                
-                <hr class="visible-xs" />
+                    <button type="button" class="btn btn-sm btn-default pull-right"
+                        ng-click="collapsed = false"
+                        ng-show="collapsed">
+                        <span class="glyphicon glyphicon-chevron-down"></span> Expand
+                    </button>
+                    <hr />                            
+                </span>
 
 <!--    <br /><pre>{{data.selectedCategory | json}}</pre>
         <br /><pre>{{data.selectedSubCategory | json}}</pre> -->
