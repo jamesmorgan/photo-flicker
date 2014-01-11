@@ -31,16 +31,22 @@ A simple browser based image gallery application built using angular-js and node
 
 * `nodejs app.js` when inside `photo-flicker-web`
 
-* _OR_ `DEBUG=express:* nodejs app.js` to DEBUG when inside `photo-flicker-web`
+* _OR_ `foreman start` from project route
 
 * _OR_ `./start-server.js` from project route
 
-* Http Server runs at: `http://localhost:8000/`
+* Http Server runs at: `http://localhost:5000/`
 
 ##### Configuration
 
 * All photos and sub folder located in `/img/gallery/photos/{{category}}/{{photos}}` will be scanned - Max two level folder structure.
 * Refresh app on F5 or click `Refresh` button
+
+##### Heruko Stuff
+
+* Restart `heroku restart`
+* Update instance `git push heroku master`
+* View logs `heroku logs`
 
 ##### Tech Stuff
 
