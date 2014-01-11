@@ -124,7 +124,7 @@
                 
                 <div class="panel-body text-center">
 
-                    <div class="carousel-container"
+                    <div class="carousel-container"  
                         ng-show="shouldShowCarousel()"> 
 
                         <ul data-rn-carousel 
@@ -136,10 +136,11 @@
                                 
                                 <img ng-src="{{photo.short_path}}" 
                                     ng-dblclick="goFullScreenImage()"
-                                    style="margin:auto;"
+                                    style="width:100%; height:auto;"
                                     class="img-responsive img-thumbnail">
 
                                 <div class="carousel-caption">
+                                    
                                     <div ng-show="debugMode">
                                         <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
                                         <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
@@ -147,6 +148,7 @@
                                         <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
                                         <pre>{{ photo | json}}</pre>
                                     </div>
+
                                     <h3>{{photo.pretty_name_without_extension}}</h3>
                                 </div>
                             </li>
@@ -181,5 +183,3 @@
 
     </div>
     <!-- END : Main Column --> 
-
-</div>

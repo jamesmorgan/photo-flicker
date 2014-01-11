@@ -12,29 +12,30 @@
   <link rel="stylesheet" href="css/app.css"/>
 
   <style type="text/css">
-  .animate-show {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    line-height:20px;
-    opacity:1;
-    padding:10px;
-    border:0px;
-    background:white;
-  }
-   
-  .animate-show.ng-hide-add,
-  .animate-show.ng-hide-remove {
-    display:block!important;
-  }
-   
-  .animate-show.ng-hide {
-    line-height:0;
-    opacity:0;
-    padding:0 10px;
-  }
-   
+    .animate-show {
+      -webkit-transition:all linear 0.5s;
+      transition:all linear 0.5s;
+      line-height:20px;
+      opacity:1;
+      padding:10px;
+      border:0px;
+      background:white;
+    }
+     
+    .animate-show.ng-hide-add,
+    .animate-show.ng-hide-remove {
+      display:block!important;
+    }
+     
+    .animate-show.ng-hide {
+      line-height:0;
+      opacity:0;
+      padding:0 10px;
+    }
+     
   </style>
 
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   
   <!--[if lt IE 9]>
@@ -47,7 +48,7 @@
 
   <div id="wrap">
     <div class="container">
-      
+
       <div ng-view>
       </div>
 
