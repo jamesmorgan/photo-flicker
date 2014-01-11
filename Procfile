@@ -1,1 +1,1 @@
-web: nodejs photo-flicker-web/app.js
+web: node photo-flicker-web/app.js

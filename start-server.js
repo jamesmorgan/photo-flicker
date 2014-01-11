@@ -2,4 +2,4 @@
 echo "Starting application"
 
 ## Debug
-DEBUG=express:* nodejs photo-flicker-web/app.js
+DEBUG=express:* node photo-flicker-web/app.js
