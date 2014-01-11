@@ -49,13 +49,14 @@ A simple browser based image gallery application built using angular-js and node
 * Update instance `git push heroku master`
 * View logs `heroku logs`
 * Adding nodejs build pack - `heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-nodejs`
+* View git remotes `git remote -v`
 
 ##### Tech Stuff
 
 * HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/ - V1.1.1
 * Buffered AngularJS Photo Carousel - https://github.com/revolunet/angular-carousel
 * Each photo JSON Object you get the following fields
-````
+````json
 	{
 	    full_path: "",
 	    short_path: "",
@@ -70,22 +71,19 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
+* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Basic search
 * Auto complete search?
 * How to display search on mobile?
-
 * Session Favourites - on every session start the ones you are interested in.
-* Refactor categories into a separate object without photos
-* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
-
-* http://www.jorisooms.be/testing-your-node-api-with-supertest/
-* FavIcon?
+* Refactor categories into a separate object without photos
+* Progress bar when loading: http://angular-ui.github.io/bootstrap/#/progressbar
 * Get real test data
 * Metadata files - possible options for details about category loaded?
 * Highlight errors?
-* Hosting - is it needed?
-* Tests?
+* Tests - http://www.jorisooms.be/testing-your-node-api-with-supertest/?
 * Docs / Info?
+* FavIcon?
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jamesmorgan/photo-flicker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

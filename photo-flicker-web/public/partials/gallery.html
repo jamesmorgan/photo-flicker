@@ -1,4 +1,5 @@
 
+
 <div class="row" ng-init="init()">
 
     <!-- Padding column Left --> 
@@ -14,16 +15,17 @@
 
             <h3 class="visible-lg visible-md">Make a Selection</h3>
             <h4 class="visible-sm">Make a Selection</h4>
-            <hr class="visible-lg visible-md visible-sm" />
+            <hr ng-show="!collapsed"/>
 
             <div id="options_container" ng-show="!collapsed">
 
-                <h5 class="visible-lg visible-md visible-sm">Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h5>
-                
                 <!-- <pre>Model: {{asyncSelected | json}}</pre> -->
 
-                <div class="input-group">
-                    <input class="form-control" type="text" 
+                <label for="catSearchInput" class="visible-lg visible-md visible-sm">
+                    Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span>
+                </label>
+                <div class="form-group input-group">
+                    <input id="catSearchInput" class="form-control" type="text" 
                           placeholder="Start typing to search...." 
                           ng-model="asyncSelected"
                           typeahead="photo for photo in lookupPhotos($viewValue) | filter:$viewValue" >
@@ -32,43 +34,46 @@
                     </span>
                 </div>
                
-                 <hr class="visible-sm visible-xs"/>
+                <hr class="visible-xs"/>
 
-                <h5 class="visible-lg visible-md visible-sm">Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h5>
-
-                <select ng-model="data.selectedCategory"
-                        class="form-control" 
-                        ng-disabled="data.categories.children.length == 0">
-                    <option ng-repeat="c in data.categories.children" value="{{$index}}">
-                        {{c.pretty_name}}
-                    </option>
-                </select>
+                <div class="form-group">
+                    <label for="catDropdown" class="visible-lg visible-md visible-sm">
+                        Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span>
+                    </label>
+                    <select id="catDropdown"
+                            class="form-control" 
+                            ng-model="data.selectedCategory"
+                            ng-disabled="data.categories.children.length == 0">
+                        <option ng-repeat="c in data.categories.children" value="{{$index}}">
+                            {{c.pretty_name}}
+                        </option>
+                    </select>
+                </div>
 
                 <hr class="visible-xs"/>
-     
-                <h5 class="visible-lg visible-md visible-sm">Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
 
-                <select ng-model="data.selectedSubCategory"
-                        class="form-control"
-                        ng-disabled="data.selectedCategory == -1">
-                    <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
-                        {{c.pretty_name}}
-                    </option>
-                </select>
+                <div class="form-group">
+                    <label for="subCatDropdown" class="visible-lg visible-md visible-sm">
+                        Sub Category <span class="badge  pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span>
+                    </label>
+                    <select id="subCatDropdown"
+                            class="form-control"
+                            ng-model="data.selectedSubCategory"
+                            ng-disabled="data.selectedCategory == -1">
+                        <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
+                            {{c.pretty_name}}
+                        </option>
+                    </select>
+                </div>
 
             </div>
 
+            <hr ng-show="!collapsed"/>
+
             <!-- START : Buttons and Actions -->
-            <div id="action_buttons_container">
+            <div class="form-group" id="action_buttons_container">
 
-                <hr ng-show="!collapsed"/>
-
-                <button class="btn btn-sm btn-info" type="button" 
-                    ng-show="debugMode" ng-click="init()">
-                     <span class="glyphicon glyphicon-refresh"></span> Refresh Categories
-                </button>
-
-                <span class="pull-left">
+                <div class="pull-left">
                     <button class="btn btn-sm btn-info " type="button" 
                             ng-click="goFullScreen()" 
                             ng-show="screenService.inFullScreen == false">
@@ -80,9 +85,9 @@
                             ng-show="screenService.inFullScreen == true">
                         <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
                     </button>
-                </span>
+                </div>
 
-                <span class="pull-right visible-sm visible-xs">
+                <div class="pull-right visible-xs">
                     <button type="button" class="btn btn-sm btn-default pull-right"
                         ng-click="collapsed = true"
                         ng-show="!collapsed">
@@ -95,10 +100,7 @@
                         <span class="glyphicon glyphicon-chevron-down"></span> Expand
                     </button>
                     <hr />                            
-                </span>
-
-<!--    <br /><pre>{{data.selectedCategory | json}}</pre>
-        <br /><pre>{{data.selectedSubCategory | json}}</pre> -->
+                </div>
 
             </div>
             <!-- END : Buttons and Actions -->
@@ -107,80 +109,76 @@
 
     </div>
 
-        <!-- START : Main Column --> 
-        <!-- Add the extra clearfix for only the required view…-->
-        <div class="clearfix visible-xs"></div>
-        <div id="main-window-container" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+    <!-- START : Main Column --> 
+    <!-- Add the extra clearfix for only the required view…-->
+    <div class="clearfix visible-xs"></div>
+    <div id="main-window-container" class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 
-            <div class="panel panel-default">
+        <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    <h3>{{data.selectedCategoryName}} <small>{{data.selectedSubCategoryName}}</small></h3>
-                <!--<h5>
-                      <span class="label label-primary" ng-bind="data.selectedCategoryName"></span> 
-                      <small class="label label-success" ng-bind="data.selectedSubCategoryName"></small>
-                    </h5>-->
-                </div>
-                
-                <div class="panel-body text-center">
+            <div class="panel-heading">
+                <h3>{{data.selectedCategoryName}} <small>{{data.selectedSubCategoryName}}</small></h3>
+            </div>
+            
+            <div class="panel-body text-center">
 
-                    <div class="carousel-container"  
-                        ng-show="shouldShowCarousel()"> 
+                <div class="carousel-container"  
+                    ng-show="shouldShowCarousel()"> 
 
-                        <ul data-rn-carousel 
-                            rn-carousel-buffered 
-                            rn-carousel-watch
-                            rn-carousel-index="currentIndex">
+                    <ul data-rn-carousel 
+                        rn-carousel-buffered 
+                        rn-carousel-watch
+                        rn-carousel-index="currentIndex">
 
-                            <li ng-repeat="photo in data.selectedPhotos">
+                        <li ng-repeat="photo in data.selectedPhotos">
+                            
+                            <img ng-src="{{photo.short_path}}" 
+                                ng-dblclick="toggleFullScreenImage()"
+                                on-double-tap="toggleFullScreenImage()"
+                                style="width:100%; height:auto;"
+                                class="img-responsive img-thumbnail">
+
+                            <div class="carousel-caption">
                                 
-                                <img ng-src="{{photo.short_path}}" 
-                                    ng-dblclick="toggleFullScreenImage()"
-                                    on-double-tap="toggleFullScreenImage()"
-                                    style="width:100%; height:auto;"
-                                    class="img-responsive img-thumbnail">
-
-                                <div class="carousel-caption">
-                                    
-                                    <div ng-show="debugMode">
-                                        <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
-                                        <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
-                                        <h5 ng-bind="'#items: ' + carouselCollection.items.length"></h5>
-                                        <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
-                                        <pre>{{ photo | json}}</pre>
-                                    </div>
-
-                                    <h3>{{photo.pretty_name_without_extension}}</h3>
+                                <div ng-show="debugMode">
+                                    <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
+                                    <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
+                                    <h5 ng-bind="'#items: ' + carouselCollection.items.length"></h5>
+                                    <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
+                                    <pre>{{ photo | json}}</pre>
                                 </div>
-                            </li>
-                        </ul>
 
-                    </div>
-
-                    <div ng-show="debugMode">
-                        Next : {{ disabledNextCarousel() }} | 
-                        Previous : {{ disabledPreviousCarousel() }} | 
-                        Length : {{data.selectedPhotos.length}} | 
-                        Current : {{currentIndex}} | 
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-                    <ul class="pager" ng-show="shouldShowCarousel()">
-                        <li class="previous"
-                            ng-class="{disabled: disabledPreviousCarousel()}">
-                            <a ng-click="previous()">&larr; Previous</a>
-                        </li>
-                        <li class="next"
-                            ng-class="{disabled: disabledNextCarousel()}">
-                            <a ng-click="next()">Next &rarr;</a>
+                                <h3>{{photo.pretty_name_without_extension}}</h3>
+                            </div>
                         </li>
                     </ul>
+
                 </div>
 
-           </div>
+                <div ng-show="debugMode">
+                    Next : {{ disabledNextCarousel() }} | 
+                    Previous : {{ disabledPreviousCarousel() }} | 
+                    Length : {{data.selectedPhotos.length}} | 
+                    Current : {{currentIndex}} | 
+                </div>
+            </div>
 
-        </div>
+            <div class="panel-footer">
+                <ul class="pager" ng-show="shouldShowCarousel()">
+                    <li class="previous"
+                        ng-class="{disabled: disabledPreviousCarousel()}">
+                        <a ng-click="previous()">&larr; Previous</a>
+                    </li>
+                    <li class="next"
+                        ng-class="{disabled: disabledNextCarousel()}">
+                        <a ng-click="next()">Next &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+
+       </div>
+
+    </div>
 
     </div>
     <!-- END : Main Column --> 
