@@ -16,7 +16,7 @@ var app = module.exports = express();
  */
 
 // all environments
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 5000);
 app.use(express.logger('dev'));		// Log all requests to console
 app.use(express.bodyParser()); 		// pull information from html in POST
 app.use(express.methodOverride()); 	// simulate DELETE and PUT
@@ -50,7 +50,7 @@ options = {
 // Gallery API
 app.get('/api/gallery/load/all', 
 	function(req, res) {
-		var fullList = dirAndFileTree('public/img/gallery/photos')
+		var fullList = dirAndFileTree('photo-flicker-web/public/img/gallery/photos')
     	responseJson(res, fullList);
 	}
 );
@@ -68,7 +68,7 @@ var responseJson = function(res, data){
 var buildFileInfo = function(filename, stats){
     var info = {
             full_path: filename,
-            short_path: filename.replace("public/",""),
+            short_path: filename.replace("photo-flicker-web/public/",""),
             name: path.basename(filename),
             pretty_name_without_extension: clean(remove_extension(path.basename(filename))),
             pretty_name: clean(path.basename(filename)),
