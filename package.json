@@ -1,0 +1,16 @@
+{
+  "name": "photo-flicker",
+  "version": "0.0.1",
+  "description": "A AngularJS Photo Gallery for web & mobile",
+  "repository": "https://github.com/jamesmorgan/photo-flicker",
+  "private": "true",
+  "scripts": {
+	"start": "start-server.sh"
+  },
+  "dependencies": {
+    "express": "~3.4.7"
+  },
+  "engines": {
+	"node": "0.10.12"
+  }
+}
