@@ -29,7 +29,7 @@ A simple browser based image gallery application built using angular-js and node
 
 ##### Start me up
 
-* `nodejs app.js` when inside `photo-flicker-web`
+* `node app.js` when inside `photo-flicker-web`
 
 * _OR_ `foreman start` from project route
 
@@ -44,6 +44,7 @@ A simple browser based image gallery application built using angular-js and node
 
 ##### Heruko Stuff
 
+* Visit sample running application at [photo-flicker.herokuapp](http://photo-flicker.herokuapp.com)
 * Restart `heroku restart`
 * Update instance `git push heroku master`
 * View logs `heroku logs`
