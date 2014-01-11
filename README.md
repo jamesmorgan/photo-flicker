@@ -47,6 +47,7 @@ A simple browser based image gallery application built using angular-js and node
 * Restart `heroku restart`
 * Update instance `git push heroku master`
 * View logs `heroku logs`
+* Adding nodejs build pack - `heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-nodejs`
 
 ##### Tech Stuff
 
