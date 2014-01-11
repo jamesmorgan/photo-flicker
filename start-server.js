@@ -1,6 +1,5 @@
 
 echo "Starting application"
-cd angular-photo-flicker-express;
 
 ## Debug
-DEBUG=express:* nodejs app.js
+DEBUG=express:* nodejs angular-photo-flicker-express/app.js
