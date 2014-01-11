@@ -82,7 +82,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             $scope.currentIndex = $scope.currentIndex + 1;    
         };
 
-        $scope.goFullScreenImage = function(){
+        $scope.toggleFullScreenImage = function(){
             // alert("Double Tap");
             ScreenfullService.toggle($('.carousel-container')[0]);
             // ScreenfullService.toggle($('#main-window-container')[0]);

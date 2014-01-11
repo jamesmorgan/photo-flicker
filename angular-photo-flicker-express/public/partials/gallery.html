@@ -135,7 +135,8 @@
                             <li ng-repeat="photo in data.selectedPhotos">
                                 
                                 <img ng-src="{{photo.short_path}}" 
-                                    ng-dblclick="goFullScreenImage()"
+                                    ng-dblclick="toggleFullScreenImage()"
+                                    on-double-tap="toggleFullScreenImage()"
                                     style="width:100%; height:auto;"
                                     class="img-responsive img-thumbnail">
 

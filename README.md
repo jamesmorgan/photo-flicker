@@ -19,6 +19,7 @@ A simple browser based image gallery application built using angular-js and node
 * [angular-animate](http://docs.angularjs.org/api/ngAnimate)
 * [angular-carousel](https://github.com/revolunet/angular-carousel)
 * [bootstrap](http://getbootstrap.com/) - 3.0.3
+* [hammer.js](https://github.com/EightMedia/hammer.js)
 
 #### Running the Application
 
@@ -65,14 +66,8 @@ A simple browser based image gallery application built using angular-js and node
 * Auto complete search?
 * How to display search on mobile?
 
-* Show/hide options when in xs mode?
-
-* Black background when in fullscreen on both Android and When clicking image
-* Full screen image not working on android
-* Double click on mobile not working - look @ http://eightmedia.github.io/hammer.js/  && http://www.ng-newsletter.com/posts/angular-on-mobile.html
-
 * Session Favourites - on every session start the ones you are interested in.
-* Refactor categories into a seperate object without photos
+* Refactor categories into a separate object without photos
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
 
