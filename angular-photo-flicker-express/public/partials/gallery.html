@@ -18,7 +18,7 @@
 
             <div id="options_container" ng-show="!collapsed">
 
-                <h4 class="visible-lg visible-md visible-sm">Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h4>
+                <h5 class="visible-lg visible-md visible-sm">Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span></h5>
                 
                 <!-- <pre>Model: {{asyncSelected | json}}</pre> -->
 
@@ -34,7 +34,7 @@
                
                  <hr class="visible-sm visible-xs"/>
 
-                <h4 class="visible-lg visible-md visible-sm">Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h4>
+                <h5 class="visible-lg visible-md visible-sm">Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span></h5>
 
                 <select ng-model="data.selectedCategory"
                         class="form-control" 
@@ -46,7 +46,7 @@
 
                 <hr class="visible-xs"/>
      
-                <h4 class="visible-lg visible-md visible-sm">Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h4>
+                <h5 class="visible-lg visible-md visible-sm">Sub Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span></h5>
 
                 <select ng-model="data.selectedSubCategory"
                         class="form-control"
@@ -115,13 +115,14 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <h3>
+                    <h3>{{data.selectedCategoryName}} <small>{{data.selectedSubCategoryName}}</small></h3>
+                <!--<h5>
                       <span class="label label-primary" ng-bind="data.selectedCategoryName"></span> 
                       <small class="label label-success" ng-bind="data.selectedSubCategoryName"></small>
-                    </h3>
+                    </h5>-->
                 </div>
                 
-                <div class="panel-body">
+                <div class="panel-body text-center">
 
                     <div class="carousel-container"
                         ng-show="shouldShowCarousel()"> 
@@ -130,12 +131,14 @@
                             rn-carousel-buffered 
                             rn-carousel-watch
                             rn-carousel-index="currentIndex">
+
                             <li ng-repeat="photo in data.selectedPhotos">
+                                
                                 <img ng-src="{{photo.short_path}}" 
                                     ng-dblclick="goFullScreenImage()"
-                                    style="margin:auto;" 
+                                    style="margin:auto;"
                                     class="img-responsive img-thumbnail">
-                                
+
                                 <div class="carousel-caption">
                                     <div ng-show="debugMode">
                                         <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
@@ -146,9 +149,9 @@
                                     </div>
                                     <h3>{{photo.pretty_name_without_extension}}</h3>
                                 </div>
-
                             </li>
-                        </ul>                        
+                        </ul>
+
                     </div>
 
                     <div ng-show="debugMode">
