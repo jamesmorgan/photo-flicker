@@ -71,8 +71,6 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Basic search
-* Auto complete search?
 * How to display search on mobile?
 
 * Alert on unable to disable fullscreen

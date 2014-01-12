@@ -18,24 +18,25 @@ angular.module('myApp.services', [])
 			categories: [],
 
 			selectedPhotos: [],
-			selectedCategory: -1,
-   			selectedSubCategory: -1,
 
+			selectedCategory: null,
+   			selectedSubCategory: null,
    			searchResults: null,
 
             selectedCategoryName: "Category",
 			selectedSubCategoryName: "Sub Category",            
 
         	resetModel: function(){
-	            this.selectedSubCategory = -1;
-            	this.selectedCategory = -1;
+   				this.searchResults = null;
+	            this.selectedSubCategory = null;
+            	this.selectedCategory = null;
             	this.selectedCategoryName = "Category";
 				this.selectedSubCategoryName = "Sub Category";
 				this.selectedPhotos = [];
         	},
 
         	hasValidCategorySelection: function(){
-                return this.selectedCategory != -1 && this.selectedSubCategory != -1;
+                return this.selectedCategory != null && this.selectedSubCategory != null;
             },
 
 			updateMetaData: function(data){
@@ -44,26 +45,31 @@ angular.module('myApp.services', [])
 				this.categories = data;
 			},
 
+			selectInitialSubCategory: function(){
+				if(this.selectedCategory != null && this.selectedCategory.children.length >= 1){
+					this.selectedSubCategory = this.selectedCategory.children[0];					
+				}
+			},
+
 			updatedPhotoSelection: function(){
 				if(!this.hasValidCategorySelection()){
 					return;
 				}
-				var category = this.photos.children[this.selectedCategory];
-				var subCategory = category.children[this.selectedSubCategory];
+				this.selectedCategoryName = this.selectedCategory.pretty_name;
+				this.selectedSubCategoryName = this.selectedSubCategory.pretty_name;
 
-				this.selectedCategoryName = category.pretty_name;
-				this.selectedSubCategoryName = subCategory.pretty_name;
-
-				this.selectedPhotos = subCategory.children; 
+				this.selectedPhotos = this.selectedSubCategory.children; 
 				$log.info("Photo Selection Updated : " + this.toStringSelected());
 			},
 
 			updateFromSearch: function(){
 				if(this.searchResults != null && this.searchResults.children != null && this.searchResults.children.length != 0){
-					$log.info("Selection : " + this.searchResults);	
-					this.selectedCategoryName = this.searchResults.pretty_name;
-					this.selectedSubCategoryName = this.searchResults.children[0].pretty_name;
-					this.selectedPhotos = this.searchResults.children[0].children; 
+					$log.info("Selection : " + this.searchResults);
+
+					this.selectedCategory = this.searchResults;
+					this.selectedSubCategory = this.searchResults.children[0];
+
+					this.updatedPhotoSelection();
 				}
 			},
 
@@ -81,8 +87,8 @@ angular.module('myApp.services', [])
             },
 
 			toStringSelected: function(){
-				return "Category: [" + this.selectedCategoryName + "], Index: [" + this.selectedCategory +"], " + 
-					 	"Sub Category: [" + this.selectedSubCategoryName + "], Index: [" + this.selectedSubCategory +"]";
+				return "Category: [" + this.selectedCategory.pretty_name + "] " +
+					 	"Sub Category: [" + this.selectedSubCategory.pretty_name + "]";
 			},
 		}
 	}])

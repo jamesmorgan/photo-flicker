@@ -38,15 +38,16 @@
 
                 <div class="form-group">
                     <label for="catDropdown" class="visible-lg visible-md visible-sm">
-                        Category <span class="badge pull-right"><abbr title="Results">{{data.categories.children.length || "0"}}</abbr></span>
+                        Category 
+                        <span class="badge pull-right">
+                            <abbr title="Results">{{data.categories.children.length || "0"}}</abbr>
+                        </span>
                     </label>
                     <select id="catDropdown"
                             class="form-control" 
                             ng-model="data.selectedCategory"
-                            ng-disabled="data.categories.children.length == 0">
-                        <option ng-repeat="c in data.categories.children" value="{{$index}}">
-                            {{c.pretty_name}}
-                        </option>
+                            ng-disabled="data.categories.children.length == 0"
+                            ng-options="c.pretty_name for c in data.categories.children">
                     </select>
                 </div>
 
@@ -54,18 +55,22 @@
 
                 <div class="form-group">
                     <label for="subCatDropdown" class="visible-lg visible-md visible-sm">
-                        Sub Category <span class="badge  pull-right"><abbr title="Results">{{data.categories.children[data.selectedCategory].children.length || "0"}}</abbr></span>
+                        Sub Category 
+                        <span class="badge  pull-right">
+                            <abbr title="Results">{{data.selectedCategory.children.length || "0"}}</abbr>
+                        </span>
                     </label>
                     <select id="subCatDropdown"
                             class="form-control"
                             ng-model="data.selectedSubCategory"
-                            ng-disabled="data.selectedCategory == -1">
-                        <option ng-repeat="c in data.categories.children[data.selectedCategory].children" value="{{$index}}">
-                            {{c.pretty_name}}
-                        </option>
+                            ng-disabled="data.selectedCategory == null"
+                            ng-options="c.pretty_name for c in data.selectedCategory.children">
                     </select>
                 </div>
-
+                <!--            
+                    <br /><pre>{{data.selectedCategory.children.length | json}}</pre>   
+                    <br /><pre>{{data.selectedSubCategory.children.length | json}}</pre>
+                -->
             </div>
 
             <hr ng-show="!collapsed">

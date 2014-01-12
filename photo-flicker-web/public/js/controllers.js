@@ -13,7 +13,7 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         $scope.$watch('data.selectedCategory', function(newVal, oldVal){
             // Reset in preparation for the sub category selection
             Data.selectedPhotos = [];
-            Data.selectedSubCategory = -1;
+            Data.selectInitialSubCategory();
         }, true);
 
         $scope.$watch('data.selectedSubCategory', function(newVal, oldVal){
