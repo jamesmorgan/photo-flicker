@@ -21,6 +21,8 @@ angular.module('myApp.services', [])
 			selectedCategory: -1,
    			selectedSubCategory: -1,
 
+   			searchResults: null,
+
             selectedCategoryName: "Category",
 			selectedSubCategoryName: "Sub Category",            
 
@@ -56,6 +58,15 @@ angular.module('myApp.services', [])
 				$log.info("Photo Selection Updated : " + this.toStringSelected());
 			},
 
+			updateFromSearch: function(){
+				if(this.searchResults != null && this.searchResults.children != null && this.searchResults.children.length != 0){
+					$log.info("Selection : " + this.searchResults);	
+					this.selectedCategoryName = this.searchResults.pretty_name;
+					this.selectedSubCategoryName = this.searchResults.children[0].pretty_name;
+					this.selectedPhotos = this.searchResults.children[0].children; 
+				}
+			},
+
             queryPhotos: function(value){
 	            var cleanLookup = value.toLowerCase().replace("_","").replace(" ","");
 	            $log.info("Lookup - " + cleanLookup);
@@ -63,7 +74,7 @@ angular.module('myApp.services', [])
 	            for(var cat in this.photos.children){
 	                var cleanVal = this.photos.children[cat].pretty_name.toLowerCase().replace("_","");
 	                if(cleanVal.contains(cleanLookup)){
-	                    addresses.push(this.photos.children[cat].pretty_name)
+	                    addresses.push(this.photos.children[cat])
 	                }
 	            }
 	            return addresses;

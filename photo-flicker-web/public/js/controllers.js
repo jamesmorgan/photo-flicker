@@ -20,6 +20,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             Data.updatedPhotoSelection();
         }, true);
 
+        $scope.$watch('data.searchResults', function(newVal, oldVal){
+            Data.updateFromSearch();
+        }, true);
+
         $scope.goFullScreen = function(){
             // ScreenfullService.fullScreen($('#main-window-container')[0]);
             ScreenfullService.toggle($('.carousel-container')[0]);

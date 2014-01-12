@@ -71,18 +71,22 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Basic search
-* Alert on fullscreen
 * Auto complete search?
 * How to display search on mobile?
-* Session Favourites - on every session start the ones you are interested in.
+
+* Alert on unable to disable fullscreen
+* Global error handler?
+
+* Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
-* Refactor categories into a separate object without photos
+
 * Progress bar when loading: http://angular-ui.github.io/bootstrap/#/progressbar
+
+* Session Favourites - on every session start the ones you are interested in.
+* Refactor categories into a separate object without photos
 * Get real test data
 * Metadata files - possible options for details about category loaded?
-* Highlight errors?
 * Tests - http://www.jorisooms.be/testing-your-node-api-with-supertest/?
 * Docs / Info?
 * FavIcon?

@@ -18,19 +18,19 @@
             <hr ng-show="!collapsed">
 
             <div id="options_container" ng-show="!collapsed">
-
-                <!-- <pre>Model: {{asyncSelected | json}}</pre> -->
-
+                <pre>Model: {{data.searchResults.children.length | json}} </pre>
                 <label for="catSearchInput" class="visible-lg visible-md visible-sm">
-                    Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span>
+                    Lookup <span class="badge pull-right">
+                    <abbr title="Results">{{data.searchResults.children.length || "0"}}</abbr></span>
                 </label>
                 <div class="form-group input-group">
                     <input id="catSearchInput" class="form-control" type="search" 
                           placeholder="Start typing to search...." 
-                          ng-model="asyncSelected"
-                          typeahead="photo for photo in lookupPhotos($viewValue) | filter:$viewValue" >
+                          ng-model="data.searchResults"
+                          typeahead="photo as photo.pretty_name  for photo in lookupPhotos($viewValue) | filter:{pretty_name:$viewValue}">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
+                        <button class="btn btn-default" type="button" 
+                                ng-disabled="data.searchResults.children.length == 0 || data.searchResults.children == null">Go!</button>
                     </span>
                 </div>
                
