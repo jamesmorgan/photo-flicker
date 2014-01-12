@@ -15,7 +15,7 @@
 
             <h3 class="visible-lg visible-md">Make a Selection</h3>
             <h4 class="visible-sm">Make a Selection</h4>
-            <hr ng-show="!collapsed"/>
+            <hr ng-show="!collapsed">
 
             <div id="options_container" ng-show="!collapsed">
 
@@ -25,7 +25,7 @@
                     Lookup <span class="badge pull-right"><abbr title="Results">{{data.lookup_results.leng || "0"}}</abbr></span>
                 </label>
                 <div class="form-group input-group">
-                    <input id="catSearchInput" class="form-control" type="text" 
+                    <input id="catSearchInput" class="form-control" type="search" 
                           placeholder="Start typing to search...." 
                           ng-model="asyncSelected"
                           typeahead="photo for photo in lookupPhotos($viewValue) | filter:$viewValue" >
@@ -34,7 +34,7 @@
                     </span>
                 </div>
                
-                <hr class="visible-xs"/>
+                <hr class="visible-xs">
 
                 <div class="form-group">
                     <label for="catDropdown" class="visible-lg visible-md visible-sm">
@@ -50,7 +50,7 @@
                     </select>
                 </div>
 
-                <hr class="visible-xs"/>
+                <hr class="visible-xs">
 
                 <div class="form-group">
                     <label for="subCatDropdown" class="visible-lg visible-md visible-sm">
@@ -68,19 +68,21 @@
 
             </div>
 
-            <hr ng-show="!collapsed"/>
+            <hr ng-show="!collapsed">
 
             <!-- START : Buttons and Actions -->
-            <div class="form-group" id="action_buttons_container">
+            <div id="action_buttons_container" class="form-group">
 
                 <div class="pull-left">
-                    <button class="btn btn-sm btn-info " type="button" 
+                    <button class="btn btn-sm btn-primary " type="button" 
                             ng-click="goFullScreen()" 
+                            ng-disabled="!screenService.isEnabled()"
                             ng-show="screenService.inFullScreen == false">
-                        <span class="glyphicon glyphicon-fullscreen"></span> Full Screen
+                        <span class="glyphicon glyphicon-fullscreen"></span> Go Full Screen
                     </button>
 
-                    <button class="btn btn-sm btn-info" type="button" 
+                    <button class="btn btn-sm btn-success" type="button" 
+                            ng-disabled="!screenService.isEnabled()"
                             ng-click="exitFullScreen()" 
                             ng-show="screenService.inFullScreen == true">
                         <span class="glyphicon glyphicon-resize-small"></span> Exit Full Screen
@@ -99,11 +101,17 @@
                         ng-show="collapsed">
                         <span class="glyphicon glyphicon-chevron-down"></span> Expand
                     </button>
-                    <hr />                            
                 </div>
 
             </div>
             <!-- END : Buttons and Actions -->
+            <br />
+            <br />
+<!-- 
+            <div class="form-group">
+                <label for="option1">Randomise</label>
+                <input id="option1" type="radio" name="radio1" value="option1">
+            </div> -->
 
         </div>
 

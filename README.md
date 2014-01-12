@@ -73,6 +73,7 @@ A simple browser based image gallery application built using angular-js and node
 
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Basic search
+* Alert on fullscreen
 * Auto complete search?
 * How to display search on mobile?
 * Session Favourites - on every session start the ones you are interested in.
