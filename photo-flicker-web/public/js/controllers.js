@@ -36,6 +36,10 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         $scope.lookupPhotos = function(val) {
             return Data.queryPhotos(val);
         };
+
+        $scope.updateFromSearch = function(){
+            Data.updateFromSearch();
+        };
   }])
   .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'Data',
     function($scope, $document, $log, GalleryService, ScreenfullService, Data) {

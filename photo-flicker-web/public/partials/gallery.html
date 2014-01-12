@@ -18,7 +18,7 @@
             <hr ng-show="!collapsed">
 
             <div id="options_container" ng-show="!collapsed">
-                <pre>Model: {{data.searchResults.children.length | json}} </pre>
+                <!-- <pre>Model: {{data.searchResults.children.length | json}} </pre> -->
                 <label for="catSearchInput" class="visible-lg visible-md visible-sm">
                     Lookup <span class="badge pull-right">
                     <abbr title="Results">{{data.searchResults.children.length || "0"}}</abbr></span>
@@ -30,7 +30,10 @@
                           typeahead="photo as photo.pretty_name  for photo in lookupPhotos($viewValue) | filter:{pretty_name:$viewValue}">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" 
-                                ng-disabled="data.searchResults.children.length == 0 || data.searchResults.children == null">Go!</button>
+                                ng-click="updateFromSearch()"
+                                ng-disabled="data.searchResults.children.length == 0 || data.searchResults.children == null">
+                                Go!
+                        </button>
                     </span>
                 </div>
                
