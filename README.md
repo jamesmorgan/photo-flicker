@@ -72,8 +72,10 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
+* Auto complete not working on mobile
 * Alert on unable to disable fullscreen
 * Global error handler?
+* Enhanced logging - http://solutionoptimist.com/2013/10/07/enhance-angularjs-logging-using-decorators/
 * Switch UI for random mode/ user mode - https://github.com/nostalgiaz/bootstrap-switch 
 * Wall Mounted - rotate images randomly, full screen?
 * Progress bar when loading: http://angular-ui.github.io/bootstrap/#/progressbar
