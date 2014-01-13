@@ -72,6 +72,7 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
+* Swipe up and down
 * Auto complete not working on mobile
 * Alert on unable to disable fullscreen
 * Global error handler?

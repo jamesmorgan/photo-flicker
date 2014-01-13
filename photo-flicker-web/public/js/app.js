@@ -17,13 +17,14 @@ var dependencies = [
 ];
 angular.module('myApp', dependencies).
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-	$routeProvider.when('/gallery', 
-  		{ 
+	$routeProvider.when('/gallery', { 
 			templateUrl	: 'partials/gallery.html', 
 			controller	: 'PhotoGalleryCtrl' 
-		});
-  	
-  	$routeProvider.otherwise({ redirectTo: '/gallery' });
-
+	});
+	$routeProvider.when('/gallery/tv', { 
+			templateUrl	: 'partials/wallmount.html', 
+			controller	: 'TvGalleryCtrl' 
+	});
+	$routeProvider.otherwise({ redirectTo: '/gallery' });
   	$locationProvider.html5Mode(false);
 }]);
