@@ -111,7 +111,7 @@ angular.module('myApp.services', [])
 	            var addresses = [];
 	            for(var cat in this.photos.children){
 	                var cleanVal = this.photos.children[cat].pretty_name.toLowerCase().replace("_","");
-	                if(cleanVal.contains(cleanLookup)){
+	                if(cleanVal.indexOf(cleanLookup) != -1){
 	                    addresses.push(this.photos.children[cat])
 	                }
 	            }
