@@ -96,4 +96,11 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             // ScreenfullService.toggle($('#main-window-container')[0]);
         };
 
+        $scope.onSwipeUp = function(){
+            Data.onSwipeSubCategoryUp();
+        };
+
+        $scope.onSwipeDown = function(){
+            Data.onSwipeSubCategoryDown();
+        };
 }]);

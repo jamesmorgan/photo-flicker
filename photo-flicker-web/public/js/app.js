@@ -20,11 +20,12 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
 	$routeProvider.when('/gallery', { 
 			templateUrl	: 'partials/gallery.html', 
 			controller	: 'PhotoGalleryCtrl' 
-	});
-	$routeProvider.when('/gallery/tv', { 
+	}).when('/gallery/tv', { 
 			templateUrl	: 'partials/wallmount.html', 
 			controller	: 'TvGalleryCtrl' 
+	}).otherwise({ 
+		redirectTo: '/gallery' 
 	});
-	$routeProvider.otherwise({ redirectTo: '/gallery' });
   	$locationProvider.html5Mode(false);
+
 }]);

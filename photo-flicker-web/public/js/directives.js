@@ -22,4 +22,24 @@ angular.module('myApp.directives', []).
            return scope.$apply(attrs['onDoubleTap']);
          });
      };
-   });;
+   })
+  .directive('onSwipeUp', function () {
+   return function (scope, element, attrs) {
+     return $(element).hammer({
+       prevent_default: false
+     })
+       .bind("swipeup", function (ev) {
+         return scope.$apply(attrs['onSwipeUp']);
+       });
+   };
+  })
+  .directive('onSwipeDown', function () {
+   return function (scope, element, attrs) {
+     return $(element).hammer({
+       prevent_default: false
+     })
+       .bind("swipedown", function (ev) {
+         return scope.$apply(attrs['onSwipeDown']);
+       });
+   };
+  })

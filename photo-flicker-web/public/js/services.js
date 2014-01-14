@@ -10,7 +10,7 @@ angular.module('myApp.services', [])
 	/**
 	 * Shared Application Data
 	 */
-	.factory('Data', ['$log', function($log) {
+	.factory('Data', ['$log', '$rootScope', function($log, $rootScope) {
 
 		return {
             
@@ -49,6 +49,38 @@ angular.module('myApp.services', [])
 				if(this.selectedCategory != null && this.selectedCategory.children.length >= 1){
 					this.selectedSubCategory = this.selectedCategory.children[0];					
 				}
+			},
+
+			onSwipeSubCategoryUp: function(){
+            	$log.info("onSwipeSubCategoryUp");
+				var currentIndex = this.findSelectedSubCategoryIndex();
+				if(currentIndex == -1 || currentIndex == (this.selectedCategory.children.length - 1)){
+					$log.info("Reached maximum sub category");
+					return;
+				}
+				this.selectedSubCategory = this.selectedCategory.children[currentIndex + 1];					
+			},
+
+			onSwipeSubCategoryDown: function(){
+	            $log.info("onSwipeSubCategoryDown");
+				var currentIndex = this.findSelectedSubCategoryIndex();
+				if(currentIndex == -1 || currentIndex == 0){
+					$log.info("Reached maximum sub category");
+					return;
+				}	
+				this.selectedSubCategory = this.selectedCategory.children[currentIndex - 1];
+			},
+
+			findSelectedSubCategoryIndex: function(){
+				var _self = this;
+				var currentIndex = -1;
+				angular.forEach(this.selectedCategory.children, function(obj, i) {
+	            	if(_self.selectedSubCategory == obj){
+						$log.info("Found sub category index: " + i);
+		            	currentIndex = i;
+	            	}
+		        });
+		        return currentIndex;
 			},
 
 			updatedPhotoSelection: function(){
