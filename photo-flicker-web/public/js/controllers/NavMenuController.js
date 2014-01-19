@@ -36,7 +36,4 @@ appControllers.controller('NavMenuController', ['$scope', '$log', 'GalleryModel'
             return GalleryModel.queryPhotos(val);
         };
 
-        $scope.updateFromSearch = function(){
-            GalleryModel.updateFromSearch();
-        };
 }]);

@@ -31,7 +31,6 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
 		redirectTo: '/gallery' 
 	});
   	$locationProvider.html5Mode(false);
-
 }])
 /**
  * App Version

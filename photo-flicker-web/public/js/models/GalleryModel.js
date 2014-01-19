@@ -32,6 +32,7 @@ angular.module('myApp.models', [])
         	},
 
         	hasValidCategorySelection: function(){
+				$log.info("hasValidCategorySelection");
                 return this.selectedCategory != null && this.selectedSubCategory != null;
             },
 
@@ -43,11 +44,12 @@ angular.module('myApp.models', [])
 
 			selectInitialSubCategory: function(){
 				if(this.selectedCategory != null && this.selectedCategory.children.length >= 1){
+					$log.info("selectInitialSubCategory");
 					this.selectedSubCategory = this.selectedCategory.children[0];					
 				}
 			},
 
-			onSwipeSubCategoryUp: function(){
+			onSwipeSubCategoryUp: function(onCategoryChanged){
             	$log.info("onSwipeSubCategoryUp");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == (this.selectedCategory.children.length - 1)){
@@ -55,9 +57,10 @@ angular.module('myApp.models', [])
 					return;
 				}
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex + 1];					
+				onCategoryChanged();
 			},
 
-			onSwipeSubCategoryDown: function(){
+			onSwipeSubCategoryDown: function(onCategoryChanged){
 	            $log.info("onSwipeSubCategoryDown");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == 0){
@@ -65,6 +68,7 @@ angular.module('myApp.models', [])
 					return;
 				}	
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex - 1];
+				onCategoryChanged();
 			},
 
 			findSelectedSubCategoryIndex: function(){

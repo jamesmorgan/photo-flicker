@@ -58,10 +58,14 @@ appControllers.controller('GalleryCarouselController', ['$scope', '$document', '
         };
 
         $scope.onSwipeUp = function(){
-            GalleryModel.onSwipeSubCategoryUp();
+            GalleryModel.onSwipeSubCategoryUp(function(){
+                $scope.currentIndex = 0;                
+            });
         };
 
         $scope.onSwipeDown = function(){
-            GalleryModel.onSwipeSubCategoryDown();
+            GalleryModel.onSwipeSubCategoryDown(function(){
+                $scope.currentIndex = 0;                
+            });
         };
 }]);

@@ -17,38 +17,18 @@
             <h4 class="visible-sm">Make a Selection</h4>
             <hr ng-show="!collapsed">
 
-            <script type="text/ng-template" id="customSearchTemplate.html">
-              <a>
-                    <span bind-html-unsafe="match.label.pretty_name | typeaheadHighlight:query"></span>
-              </a>
-            </script>
-
             <div id="options_container" ng-show="!collapsed">
                 <!-- <pre>Model: {{data.searchResults.children.length | json}} </pre> -->
                 <label for="catSearchInput" class="visible-lg visible-md visible-sm">
                     Lookup <span class="badge pull-right">
                     <abbr title="Results">{{data.searchResults.children.length || "0"}}</abbr></span>
                 </label>
-                <div class="form-group input-group">
+                <div class="form-group">
                     <input id="catSearchInput" class="form-control" type="text" 
                           placeholder="Start typing to search...." 
                           ng-model="data.searchResults"
                           typeahead-min-length="1"
                           typeahead="photo as photo.pretty_name for photo in lookupPhotos($viewValue) | filter:{pretty_name:$viewValue} | limitTo:10" >
-
-<!--
-                        typeahead="photo as photo for photo in lookupPhotos($viewValue) | filter:{pretty_name:$viewValue} | limitTo:10"
-                        typeahead-template-url="customSearchTemplate.html"
-                        typeahead="photo as photo.pretty_name for photo in lookupPhotos($viewValue) | filter:{pretty_name:$viewValue} | limitTo:10"
- -->
-
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" 
-                                ng-click="updateFromSearch()"
-                                ng-disabled="data.searchResults.children.length == 0 || data.searchResults.children == null">
-                                Go!
-                        </button>
-                    </span>
                 </div>
                
                 <hr class="visible-xs">
@@ -157,7 +137,8 @@
 
                     <ul data-rn-carousel 
                         rn-carousel-buffered 
-                        rn-carousel-watch                                
+                        rn-carousel-watch
+                        rn-carousel-indicator                                
                         rn-carousel-index="currentIndex">
 
                         <li ng-repeat="photo in data.selectedPhotos">
