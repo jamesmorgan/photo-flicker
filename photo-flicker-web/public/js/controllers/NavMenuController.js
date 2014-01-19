@@ -2,8 +2,8 @@
 
 /* Controllers */
 
-appControllers.controller('NavMenuController', ['$scope', '$log', 'GalleryModel', 'ScreenfullService',
-    function($scope, $log, GalleryModel, ScreenfullService) {
+appControllers.controller('NavMenuController', ['$scope', '$log', 'GalleryModel', 'ScreenfullService', 'NavigationService',
+    function($scope, $log, GalleryModel, ScreenfullService, NavigationService) {
 
         $scope.data = GalleryModel;
 
@@ -30,6 +30,10 @@ appControllers.controller('NavMenuController', ['$scope', '$log', 'GalleryModel'
 
         $scope.exitFullScreen = function(){
             ScreenfullService.exit();
+        };
+
+        $scope.navigateWallMounted = function(){
+            NavigationService.navigateWallMountedMode()
         };
 
         $scope.lookupPhotos = function(val) {

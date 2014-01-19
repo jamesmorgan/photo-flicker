@@ -26,7 +26,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
 			controller	: 'GalleryCarouselController' 
 	}).when('/gallery/tv', { 
 			templateUrl	: 'partials/wallmount.html', 
-			controller	: 'TvGalleryCtrl' 
+			controller	: 'TvGalleryController' 
 	}).otherwise({ 
 		redirectTo: '/gallery' 
 	});
@@ -37,6 +37,6 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
  */
 .value('version', '0.1');
 
-var appControllers = angular.module('myApp.controllers', ['ngAnimate', 'ngTouch']);
+var appControllers = angular.module('myApp.controllers', []);
 var appServices = angular.module('myApp.services', []);
 var appModels = angular.module('myApp.models', []);

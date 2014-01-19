@@ -74,7 +74,9 @@ A simple browser based image gallery application built using angular-js and node
 
 * pollyfill EMScript5?
 * Install and use Bower?
-
+* Set bower version in JS file - grunt and chore tasks?
+* Clean up Node dependencies
+* Tv/Wall Mounted Mode
 * Look into pollyfill on < Android 4 - https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
 * touch events - gestures?
 * Alert on unable to disable fullscreen
