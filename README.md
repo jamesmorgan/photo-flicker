@@ -72,11 +72,8 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Project structure layout - file/folder organisation
 * pollyfill EMScript5?
 * Install and use Bower?
-
-* Swipe up/down in fullscreen when on mobile?
 * touch events - gestures?
 * Alert on unable to disable fullscreen
 * Global error handler?
