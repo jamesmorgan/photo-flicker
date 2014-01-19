@@ -158,13 +158,13 @@
                     <ul data-rn-carousel 
                         rn-carousel-buffered 
                         rn-carousel-watch                                
-                        on-swipe-up="onSwipeUp()"
-                        on-swipe-down="onSwipeDown()"
                         rn-carousel-index="currentIndex">
 
                         <li ng-repeat="photo in data.selectedPhotos">
                             
                             <img ng-src="{{photo.short_path}}" 
+                                on-swipe-up="onSwipeUp()"
+                                on-swipe-down="onSwipeDown()"
                                 on-double-tap="toggleFullScreenImage()"
 
                                 style="width:100%; height:auto;"
