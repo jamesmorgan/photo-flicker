@@ -12,11 +12,15 @@ var dependencies = [
 	// Application Dependencies
 	'myApp.filters',
 	'myApp.services',
+	'myApp.models',
 	'myApp.directives',
 	'myApp.controllers',
 ];
-angular.module('myApp', dependencies).
-config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('myApp', dependencies)
+/**
+ * Routing Configuration
+ */
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider.when('/gallery', { 
 			templateUrl	: 'partials/gallery.html', 
 			controller	: 'PhotoGalleryCtrl' 
@@ -28,4 +32,12 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
 	});
   	$locationProvider.html5Mode(false);
 
-}]);
+}])
+/**
+ * App Version
+ */
+.value('version', '0.1');
+
+var appControllers = angular.module('myApp.controllers', []);
+var appServices = angular.module('myApp.services', []);
+var appModels = angular.module('myApp.models', []);

@@ -3,25 +3,25 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 'ScreenfullService',
-    function($scope, $log, GalleryService, Data, ScreenfullService) {
+  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'GalleryModel', 'ScreenfullService',
+    function($scope, $log, GalleryService, GalleryModel, ScreenfullService) {
 
-        $scope.data = Data;
+        $scope.data = GalleryModel;
 
         $scope.screenService = ScreenfullService;
 
         $scope.$watch('data.selectedCategory', function(newVal, oldVal){
             // Reset in preparation for the sub category selection
-            Data.selectedPhotos = [];
-            Data.selectInitialSubCategory();
+            GalleryModel.selectedPhotos = [];
+            GalleryModel.selectInitialSubCategory();
         }, true);
 
         $scope.$watch('data.selectedSubCategory', function(newVal, oldVal){
-            Data.updatedPhotoSelection();
+            GalleryModel.updatedPhotoSelection();
         }, true);
 
         $scope.$watch('data.searchResults', function(newVal, oldVal){
-            Data.updateFromSearch();
+            GalleryModel.updateFromSearch();
         }, true);
 
         $scope.goFullScreen = function(){
@@ -34,19 +34,19 @@ angular.module('myApp.controllers', [])
         };
 
         $scope.lookupPhotos = function(val) {
-            return Data.queryPhotos(val);
+            return GalleryModel.queryPhotos(val);
         };
 
         $scope.updateFromSearch = function(){
-            Data.updateFromSearch();
+            GalleryModel.updateFromSearch();
         };
   }])
-  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'Data',
-    function($scope, $document, $log, GalleryService, ScreenfullService, Data) {
+  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'GalleryModel',
+    function($scope, $document, $log, GalleryService, ScreenfullService, GalleryModel) {
 
         $scope.debugMode = false;
         $scope.currentIndex = -1;
-        $scope.data = Data;
+        $scope.data = GalleryModel;
 
         angular.element($document).bind("keyup", function(event) {
             if (event.which === 37) {
@@ -61,7 +61,7 @@ angular.module('myApp.controllers', [])
         });
 
         $scope.init = function() {
-            GalleryService.lookupPhotoData();
+            GalleryService.lookupPhotoGalleryModel();
         };
 
         /**
@@ -100,12 +100,14 @@ angular.module('myApp.controllers', [])
         };
 
         $scope.onSwipeUp = function(){
-            // TODO reset currentIndex to -1
-            Data.onSwipeSubCategoryUp();
+            GalleryModel.onSwipeSubCategoryUp(function(){
+                $scope.currentIndex = 0;                
+            });
         };
 
         $scope.onSwipeDown = function(){
-            // TODO reset currentIndex to -1
-            Data.onSwipeSubCategoryDown();
+            GalleryModel.onSwipeSubCategoryDown(function(){
+                $scope.currentIndex = 0;                
+            });
         };
 }]);
