@@ -1,0 +1,34 @@
+{
+  "name": "photo-flicker",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jamesmorgan/photo-flicker",
+  "authors": [
+    "James Morgan <james.morgan.e@gmail.com>"
+  ],
+  "description": "JS Photo Flicker",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "photo-flicker-web/public/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "screenfull": "~1.1.1",
+    "jquery": "2.0.3",
+    "angular": "1.2.6",
+    "angular-touch": "1.2.6",
+    "angular-route": "1.2.6",
+    "angular-rn-carousel": "~0.1.6",
+    "jquery-hammerjs": "*",
+    "hammerjs": "~1.0.6",
+    "angular-bootstrap": "~0.10.0"
+  },
+  "resolutions": {
+    "angular": "1.2.6",
+    "angular-touch": "1.2.6"
+  }
+}

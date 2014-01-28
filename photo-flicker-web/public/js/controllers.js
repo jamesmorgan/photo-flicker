@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
+angular.module('myApp.controllers', [])
   .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'Data', 'ScreenfullService',
     function($scope, $log, GalleryService, Data, ScreenfullService) {
 
@@ -64,6 +64,9 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
             GalleryService.lookupPhotoData();
         };
 
+        /**
+         * TODO this caused problems?
+         */
         $scope.shouldShowCarousel = function(){
             return $scope.data != null && $scope.data.selectedPhotos.length != 0;
         };
@@ -97,10 +100,12 @@ angular.module('myApp.controllers', ['ngAnimate', 'ngTouch'])
         };
 
         $scope.onSwipeUp = function(){
+            // TODO reset currentIndex to -1
             Data.onSwipeSubCategoryUp();
         };
 
         $scope.onSwipeDown = function(){
+            // TODO reset currentIndex to -1
             Data.onSwipeSubCategoryDown();
         };
 }]);
