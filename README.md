@@ -75,6 +75,9 @@ A simple browser based image gallery application built using angular-js and node
 * Project structure layout - file/folder organisation
 * pollyfill EMScript5?
 * Install and use Bower?
+* Update README
+* Prevent left/right arrows inside an input box from moving the pictures
+* Redesign UI to be more mobile and bootstrap friendly
 
 * Swipe up/down in fullscreen when on mobile?
 * touch events - gestures?
