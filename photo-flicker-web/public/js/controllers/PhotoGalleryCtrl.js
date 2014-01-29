@@ -22,44 +22,34 @@ appControllers.controller('PhotoGalleryCtrl',
             GalleryService.lookupPhotoGalleryModel();
         };
 
-        /**
-         * TODO this caused problems?
-         */
-        $scope.shouldShowCarousel = function(){
-            // return $scope.data != null && $scope.data.selectedPhotos.length != 0;
-            return $scope.data != null && $scope.data.selectedPhotos.length != 0;
-        };
-
         $scope.disabledPreviousCarousel = function(){
-            // return $scope.currentIndex == 0 || $scope.currentIndex == -1;
-            return $scope.data.selectedPhotoIndex == 0 || $scope.data.selectedPhotoIndex == -1;
+            return GalleryModel.selectedPhotoIndex == 0 || GalleryModel.selectedPhotoIndex == -1;
         };
 
         $scope.disabledNextCarousel = function(){
-            // return $scope.currentIndex == -1 || $scope.currentIndex >= ($scope.data.selectedPhotos.length-1);
-            return $scope.data.selectedPhotoIndex == -1 || $scope.data.selectedPhotoIndex >= ($scope.data.selectedPhotos.length-1);
+            return GalleryModel.selectedPhotoIndex == -1 || GalleryModel.selectedPhotoIndex >= (GalleryModel.selectedPhotos.length-1);
         };
 
         $scope.previous = function(){
             if($scope.disabledPreviousCarousel()){
                 return;
             }
-            // $scope.currentIndex = $scope.currentIndex - 1;    
-            $scope.data.selectedPhotoIndex = $scope.data.selectedPhotoIndex - 1;    
+            GalleryModel.selectedPhotoIndex = GalleryModel.selectedPhotoIndex - 1;    
+        };
+
+        $scope.shouldShowCarousel = function(){
+            return GalleryModel.selectedPhotos.length != 0;
         };
 
         $scope.next = function(){
             if($scope.disabledNextCarousel()){
                 return;
             }
-            // $scope.currentIndex = $scope.currentIndex - 1;    
-            $scope.data.selectedPhotoIndex = $scope.data.selectedPhotoIndex + 1;    
+            GalleryModel.selectedPhotoIndex = GalleryModel.selectedPhotoIndex + 1;    
         };
 
         $scope.toggleFullScreenImage = function(){
-            // alert("Double Tap");
             ScreenfullService.toggle($('.carousel-container')[0]);
-            // ScreenfullService.toggle($('#main-window-container')[0]);
         };
 
         $scope.onSwipeUp = function(){

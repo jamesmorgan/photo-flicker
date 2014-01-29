@@ -146,11 +146,6 @@
             <!-- END : Buttons and Actions -->
             <br />
             <br />
-<!-- 
-            <div class="form-group">
-                <label for="option1">Randomise</label>
-                <input id="option1" type="radio" name="radio1" value="option1">
-            </div> -->
 
         </div>
 
@@ -173,32 +168,30 @@
 
                     <ul rn-carousel 
                         rn-carousel-buffered 
-                        rn-carousel-watch
+                        rn-carousel-watch 
                         rn-carousel-control
-                        rn-carousel-swipe="true"                                
+                        rn-carousel-indicator
+                        rn-carousel-swipe="true" 
                         rn-carousel-index="data.selectedPhotoIndex">
 
-                        <li ng-repeat="photo in data.selectedPhotos">
-                            
+                        <li ng-repeat="photo in data.selectedPhotos"
+                            style="position: relative;">
                             <img ng-src="{{photo.short_path}}" 
                                 on-swipe-up="onSwipeUp()"
                                 on-swipe-down="onSwipeDown()"
                                 on-double-tap="toggleFullScreenImage()"
-
-                                style="width:100%; height:auto;"
-                                class="img-responsive img-thumbnail">
-
-                            <div class="carousel-caption">
-
-                                <div ng-show="debugMode">
-                                    <h4 ng-bind="'carouselIndex: ' + carouselIndex"></h4>
-                                    <h4 ng-bind="'carouselBufferIndex: ' + carouselBufferIndex"></h4>
-                                    <pre>{{ photo | json}}</pre>    
-                                </div>
-
-                                <h3>{{photo.pretty_name_without_extension}}</h3>
+                                style="width:100%; height:auto; "
+                                class="img-responsive">
+                          <div class="layer">
+                            <div ng-show="debugMode" class="text-center">
+                                <h4 ng-bind="'carouselIndex: ' + carouselIndex"></h4>
+                                <h4 ng-bind="'carouselBufferIndex: ' + carouselBufferIndex"></h4>
+                                <pre style="max-width: 600px; text-align: center; margin: auto;">{{ photo | json}}</pre>    
                             </div>
+                            <h3>{{photo.pretty_name_without_extension}}</h3>
+                          </div>
                         </li>
+
                     </ul>
 
                 </div>

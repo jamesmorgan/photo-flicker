@@ -25,7 +25,9 @@
     "angular-rn-carousel": "~0.1.6",
     "jquery-hammerjs": "*",
     "hammerjs": "~1.0.6",
-    "angular-bootstrap": "~0.10.0"
+    "angular-bootstrap": "~0.10.0",
+    "es6-shim": "~0.9.2",
+    "es5-shim": "~2.3.0"
   },
   "resolutions": {
     "angular": "1.2.6",

@@ -37,7 +37,7 @@ angular.module('myApp', dependencies)
  */
 .constant('appConfig', {
 	version: '0.1',
-	debug: true
+	debug: false
 })
 
 var appControllers = angular.module('myApp.controllers', []);

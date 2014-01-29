@@ -69,6 +69,7 @@ var buildFileInfo = function(filename, stats){
     var info = {
             full_path: filename,
             short_path: filename.replace("photo-flicker-web/public/",""),
+            short_path_uri_encoded: encodeURIComponent(filename.replace("photo-flicker-web/public/","")),
             name: path.basename(filename),
             pretty_name_without_extension: clean(remove_extension(path.basename(filename))),
             pretty_name: clean(path.basename(filename)),
