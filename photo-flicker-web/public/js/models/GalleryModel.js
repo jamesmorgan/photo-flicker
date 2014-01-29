@@ -13,6 +13,7 @@ appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootSco
 			categories: [],
 
 			selectedPhotos: [],
+			selectedPhotoIndex: -1,
 
 			selectedCategory: null,
    			selectedSubCategory: null,
@@ -48,7 +49,7 @@ appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootSco
 				}
 			},
 
-			onSwipeSubCategoryUp: function(onCategoryChanged){
+			onSwipeSubCategoryUp: function(){
             	$log.info("onSwipeSubCategoryUp");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == (this.selectedCategory.children.length - 1)){
@@ -56,10 +57,10 @@ appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootSco
 					return;
 				}
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex + 1];					
-				onCategoryChanged();
+				this.selectedPhotoIndex = 0;
 			},
 
-			onSwipeSubCategoryDown: function(onCategoryChanged){
+			onSwipeSubCategoryDown: function(){
 	            $log.info("onSwipeSubCategoryDown");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == 0){
@@ -67,7 +68,7 @@ appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootSco
 					return;
 				}	
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex - 1];
-				onCategoryChanged();
+				this.selectedPhotoIndex = 0;
 			},
 
 			findSelectedSubCategoryIndex: function(){

@@ -80,8 +80,25 @@
                     <select id="subCatDropdown"
                             class="form-control"
                             ng-model="data.selectedSubCategory"
-                            ng-disabled="data.selectedCategory == null"
+                            ng-disabled="data.selectedCategory.children == null || data.selectedCategory.children.length == 0"
                             ng-options="c.pretty_name for c in data.selectedCategory.children">
+                    </select>
+                </div>
+                
+                <hr class="visible-xs">
+
+                <div class="form-group">
+                    <label for="subCatDropdown" class="visible-lg visible-md visible-sm">
+                        Pictures 
+                        <span class="badge  pull-right">
+                            <abbr title="Results">{{data.selectedPhotos.length || "0"}}</abbr>
+                        </span>
+                    </label>
+                    <select id="picturesDropdown"
+                            class="form-control"
+                            ng-model="data.selectedPhotoIndex" 
+                            ng-disabled="data.selectedPhotos.length == 0"
+                            ng-options="i as p.pretty_name_without_extension for (i, p) in data.selectedPhotos">
                     </select>
                 </div>
                 <!--            
@@ -154,10 +171,12 @@
 
                 <div class="carousel-container"> 
 
-                    <ul data-rn-carousel 
+                    <ul rn-carousel 
                         rn-carousel-buffered 
-                        rn-carousel-watch                                
-                        rn-carousel-index="currentIndex">
+                        rn-carousel-watch
+                        rn-carousel-control
+                        rn-carousel-swipe="true"                                
+                        rn-carousel-index="data.selectedPhotoIndex">
 
                         <li ng-repeat="photo in data.selectedPhotos">
                             
@@ -170,13 +189,11 @@
                                 class="img-responsive img-thumbnail">
 
                             <div class="carousel-caption">
-                                
+
                                 <div ng-show="debugMode">
-                                    <h5 ng-bind="'index: ' + carouselCollection.index"></h5>
-                                    <h5 ng-bind="'position: ' + carouselCollection.position"></h5>
-                                    <h5 ng-bind="'#items: ' + carouselCollection.items.length"></h5>
-                                    <h5 ng-bind="'#DOM items: ' + carouselCollection.cards.length"></h5>
-                                    <pre>{{ photo | json}}</pre>
+                                    <h4 ng-bind="'carouselIndex: ' + carouselIndex"></h4>
+                                    <h4 ng-bind="'carouselBufferIndex: ' + carouselBufferIndex"></h4>
+                                    <pre>{{ photo | json}}</pre>    
                                 </div>
 
                                 <h3>{{photo.pretty_name_without_extension}}</h3>
@@ -190,7 +207,7 @@
                     Next : {{ disabledNextCarousel() }} | 
                     Previous : {{ disabledPreviousCarousel() }} | 
                     Length : {{data.selectedPhotos.length}} | 
-                    Current : {{currentIndex}} | 
+                    Current : {{data.selectedPhotoIndex}} | 
                 </div>
             </div>
 

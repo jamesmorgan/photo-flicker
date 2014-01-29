@@ -24,19 +24,21 @@ angular.module('myApp', dependencies)
 	$routeProvider.when('/gallery', { 
 			templateUrl	: 'partials/gallery.html', 
 			controller	: 'PhotoGalleryCtrl' 
-	}).when('/gallery/tv', { 
+	}).when('/gallery/tv', {
 			templateUrl	: 'partials/wallmount.html', 
 			controller	: 'TvGalleryCtrl' 
 	}).otherwise({ 
 		redirectTo: '/gallery' 
 	});
   	$locationProvider.html5Mode(false);
-
 }])
 /**
- * App Version
+ * App Config
  */
-.value('version', '0.1');
+.constant('appConfig', {
+	version: '0.1',
+	debug: true
+})
 
 var appControllers = angular.module('myApp.controllers', []);
 var appServices = angular.module('myApp.services', []);

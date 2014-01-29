@@ -41,10 +41,10 @@ angular.module('myApp.controllers', [])
             GalleryModel.updateFromSearch();
         };
   }])
-  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'GalleryModel',
-    function($scope, $document, $log, GalleryService, ScreenfullService, GalleryModel) {
+  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'GalleryModel', 'appConfig',
+    function($scope, $document, $log, GalleryService, ScreenfullService, GalleryModel, appConfig) {
 
-        $scope.debugMode = false;
+        $scope.debugMode = appConfig.debug;
         $scope.currentIndex = -1;
         $scope.data = GalleryModel;
 
@@ -68,29 +68,34 @@ angular.module('myApp.controllers', [])
          * TODO this caused problems?
          */
         $scope.shouldShowCarousel = function(){
+            // return $scope.data != null && $scope.data.selectedPhotos.length != 0;
             return $scope.data != null && $scope.data.selectedPhotos.length != 0;
         };
 
         $scope.disabledPreviousCarousel = function(){
-            return $scope.currentIndex == 0 || $scope.currentIndex == -1;
+            // return $scope.currentIndex == 0 || $scope.currentIndex == -1;
+            return $scope.data.selectedPhotoIndex == 0 || $scope.data.selectedPhotoIndex == -1;
         };
 
         $scope.disabledNextCarousel = function(){
-            return $scope.currentIndex == -1 || $scope.currentIndex >= ($scope.data.selectedPhotos.length-1);
+            // return $scope.currentIndex == -1 || $scope.currentIndex >= ($scope.data.selectedPhotos.length-1);
+            return $scope.data.selectedPhotoIndex == -1 || $scope.data.selectedPhotoIndex >= ($scope.data.selectedPhotos.length-1);
         };
 
         $scope.previous = function(){
             if($scope.disabledPreviousCarousel()){
                 return;
             }
-            $scope.currentIndex = $scope.currentIndex - 1;    
+            // $scope.currentIndex = $scope.currentIndex - 1;    
+            $scope.data.selectedPhotoIndex = $scope.data.selectedPhotoIndex - 1;    
         };
 
         $scope.next = function(){
             if($scope.disabledNextCarousel()){
                 return;
             }
-            $scope.currentIndex = $scope.currentIndex + 1;    
+            // $scope.currentIndex = $scope.currentIndex - 1;    
+            $scope.data.selectedPhotoIndex = $scope.data.selectedPhotoIndex + 1;    
         };
 
         $scope.toggleFullScreenImage = function(){
@@ -100,14 +105,10 @@ angular.module('myApp.controllers', [])
         };
 
         $scope.onSwipeUp = function(){
-            GalleryModel.onSwipeSubCategoryUp(function(){
-                $scope.currentIndex = 0;                
-            });
+            GalleryModel.onSwipeSubCategoryUp();
         };
 
         $scope.onSwipeDown = function(){
-            GalleryModel.onSwipeSubCategoryDown(function(){
-                $scope.currentIndex = 0;                
-            });
+            GalleryModel.onSwipeSubCategoryDown();
         };
 }]);
