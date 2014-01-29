@@ -1,35 +1,38 @@
 photo-flicker
 =============
 
-A simple browser based image gallery application built using angular-js and node.js - WIP 
+A simple browser based image gallery application built using angular-js and node.js - WIP
 
 #### Project inception:
 
 * To be used to display pieces of work by a tattoo artist
 * Should be hosted internally on a single low resource machine/laptop
 * Should be viewable on the following devices
- * Wall mounted TV - randomise mode
+ * Wall mounted TV
  * Smart phone
  * Tablet - Android/IPad  
 
-
 #### Libraries Used
+
+See [bower.json](bower.json) for more details.
 
 * [node-js](http://nodejs.org) : v0.10.15
 * [express-js](http://expressjs.com) : ~3.4.7
-* [angular-js](http://angularjs.org) - 1.2.6
-* [angular-ui](http://angular-ui.github.io/bootstrap/) - 0.9.0
-* [angular-touch](http://docs.angularjs.org/api/ngTouch)
-* [angular-animate](http://docs.angularjs.org/api/ngAnimate)
+* [angular-js](http://angularjs.org) : 1.2.6
+* [angular-touch](http://docs.angularjs.org/api/ngTouch) : 1.2.6
+* [angular-animate](http://docs.angularjs.org/api/ngAnimate) : 1.2.6
+* [angular-ui](http://angular-ui.github.io/bootstrap/) - 0.1.6
 * [angular-carousel](https://github.com/revolunet/angular-carousel)
-* [bootstrap](http://getbootstrap.com/) - 3.0.3
-* [hammer.js](https://github.com/EightMedia/hammer.js)
+* [bootstrap](http://getbootstrap.com/) : 3.0.3
+* [hammer.js](https://github.com/EightMedia/hammer.js) : 1.0.6
+* [screenful.js](https://github.com/EightMedia/hammer.js) : 1.1.1
 
 #### Running the Application
 
 ##### Install me
 
-* `npm install express --save` - install dependencies
+* `npm install express` - nodejs dependencies
+* `bower install` - client dependencies
 
 ##### Start me up
 
@@ -55,6 +58,8 @@ A simple browser based image gallery application built using angular-js and node
 
 * HTML5 - Fullscreen API - http://sindresorhus.com/screenfull.js/ - V1.1.1
 * Buffered AngularJS Photo Carousel - https://github.com/revolunet/angular-carousel
+* Bootstrap enabled
+* Heroku hosted
 * Each photo JSON Object you get the following fields
 
 ````json
@@ -71,11 +76,14 @@ A simple browser based image gallery application built using angular-js and node
 	}
 ````
 
+#### Example Screenshot
+
+![example-screenshot](images/example-gallery.png "Example Gallery Screenshot")
+
+
 #### TODO
 
-* Update README
 * Redesign UI to be more mobile and bootstrap friendly
-
 * Clean CSS
 * Removed overhang of image to right side of image container 
 * Prevent left/right arrows inside an input box from moving the pictures

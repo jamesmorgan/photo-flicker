@@ -50,23 +50,23 @@ appModels.factory('GalleryModel', function($log, $rootScope) {
 			},
 
 			onSwipeSubCategoryUp: function(){
-            	$log.info("onSwipeSubCategoryUp");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == (this.selectedCategory.children.length - 1)){
 					$log.info("Reached maximum sub category");
 					return;
 				}
+            	$log.info("onSwipeSubCategoryUp");
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex + 1];					
 				this.selectedPhotoIndex = 0;
 			},
 
 			onSwipeSubCategoryDown: function(){
-	            $log.info("onSwipeSubCategoryDown");
 				var currentIndex = this.findSelectedSubCategoryIndex();
 				if(currentIndex == -1 || currentIndex == 0){
 					$log.info("Reached maximum sub category");
 					return;
 				}	
+	            $log.info("onSwipeSubCategoryDown");
 				this.selectedSubCategory = this.selectedCategory.children[currentIndex - 1];
 				this.selectedPhotoIndex = 0;
 			},
