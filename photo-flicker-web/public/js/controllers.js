@@ -3,8 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('NavMenuCtrl', ['$scope', '$log', 'GalleryService', 'GalleryModel', 'ScreenfullService',
-    function($scope, $log, GalleryService, GalleryModel, ScreenfullService) {
+  .controller('NavMenuCtrl', function($scope, $log, GalleryService, GalleryModel, ScreenfullService) {
 
         $scope.data = GalleryModel;
 
@@ -40,9 +39,8 @@ angular.module('myApp.controllers', [])
         $scope.updateFromSearch = function(){
             GalleryModel.updateFromSearch();
         };
-  }])
-  .controller('PhotoGalleryCtrl', ['$scope', '$document', '$log', 'GalleryService', 'ScreenfullService', 'GalleryModel', 'appConfig',
-    function($scope, $document, $log, GalleryService, ScreenfullService, GalleryModel, appConfig) {
+  })
+  .controller('PhotoGalleryCtrl', function($scope, $document, $log, GalleryService, ScreenfullService, GalleryModel, appConfig) {
 
         $scope.debugMode = appConfig.debug;
         $scope.currentIndex = -1;
@@ -111,4 +109,4 @@ angular.module('myApp.controllers', [])
         $scope.onSwipeDown = function(){
             GalleryModel.onSwipeSubCategoryDown();
         };
-}]);
+});

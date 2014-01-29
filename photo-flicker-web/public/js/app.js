@@ -20,7 +20,7 @@ angular.module('myApp', dependencies)
 /**
  * Routing Configuration
  */
-.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+.config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/gallery', { 
 			templateUrl	: 'partials/gallery.html', 
 			controller	: 'PhotoGalleryCtrl' 
@@ -31,7 +31,7 @@ angular.module('myApp', dependencies)
 		redirectTo: '/gallery' 
 	});
   	$locationProvider.html5Mode(false);
-}])
+})
 /**
  * App Config
  */

@@ -3,7 +3,7 @@
 /**
  * Screen Full Service Wrapper
  */
-appServices.factory('ScreenfullService', ['$document', '$rootScope', '$log', function($document, $rootScope, $log) {
+appServices.factory('ScreenfullService', function($document, $rootScope, $log) {
 		
 	var screenfullService = {
 		inFullScreen: false,
@@ -49,4 +49,4 @@ appServices.factory('ScreenfullService', ['$document', '$rootScope', '$log', fun
 	}
 
     return screenfullService;
-}]);
+});

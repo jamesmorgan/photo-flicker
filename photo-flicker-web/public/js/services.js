@@ -10,7 +10,7 @@ angular.module('myApp.services', [])
 	/**
 	 * Shared Application Data
 	 */
-	.factory('Data', ['$log', '$rootScope', function($log, $rootScope) {
+	.factory('Data', function($log, $rootScope) {
 
 		return {
             
@@ -123,12 +123,11 @@ angular.module('myApp.services', [])
 					 	"Sub Category: [" + this.selectedSubCategory.pretty_name + "]";
 			},
 		}
-	}])
+	})
 	/**
 	 * Gallery Loading Service
 	 */
-	.factory('GalleryService', ['$rootScope', '$http', '$log', 'Data', 
-		function($rootScope, $http, $log, Data) {
+	.factory('GalleryService', function($rootScope, $http, $log, Data) {
 
 		var GALLERY_API = "/api/gallery";
 
@@ -156,11 +155,11 @@ angular.module('myApp.services', [])
 	                });
     		},
     	};
-  	}])
+  	})
 	/**
 	 * Screen Full Service Wrapper
 	 */
-	.factory('ScreenfullService', ['$document', '$rootScope', '$log', function($document, $rootScope, $log) {
+	.factory('ScreenfullService', function($document, $rootScope, $log) {
     	
     	var screenfullService = {
     		inFullScreen: false,
@@ -206,4 +205,4 @@ angular.module('myApp.services', [])
 		}
 
 	    return screenfullService;
-	}]);
+	});

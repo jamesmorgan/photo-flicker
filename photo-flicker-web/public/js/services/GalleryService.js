@@ -3,8 +3,7 @@
 /**
  * Gallery Loading Service
  */
-appServices.factory('GalleryService', ['$rootScope', '$http', '$log', 'GalleryModel', 
-    function($rootScope, $http, $log, GalleryModel) {
+appServices.factory('GalleryService', function($rootScope, $http, $log, GalleryModel) {
 
         var GALLERY_API = "/api/gallery";
 
@@ -32,4 +31,4 @@ appServices.factory('GalleryService', ['$rootScope', '$http', '$log', 'GalleryMo
                     });
             },
         }
-}]);	
+});	

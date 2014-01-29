@@ -4,11 +4,11 @@
 
 
 angular.module('myApp.directives', [])
-  .directive('appVersion', ['appConfig', function(appConfig) {
+  .directive('appVersion', function(appConfig) {
     return function(scope, elm, attrs) {
       elm.text(appConfig.version);
     };
-  }])
+  })
   /**
    * hold, tap, doubletap, transformstart, transform, transformend, dragstart, drag, dragend, release, swipe.
    */

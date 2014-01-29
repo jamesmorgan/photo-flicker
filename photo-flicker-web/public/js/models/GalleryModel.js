@@ -5,7 +5,7 @@
 	/**
 	 * Shared Application Data
 	 */
-appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootScope) {
+appModels.factory('GalleryModel', function($log, $rootScope) {
 
 		return {
             
@@ -123,4 +123,4 @@ appModels.factory('GalleryModel', ['$log', '$rootScope', function($log, $rootSco
 					 	"Sub Category: [" + this.selectedSubCategory.pretty_name + "]";
 			},
 		}
-	}]);
+	});
