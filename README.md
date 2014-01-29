@@ -61,6 +61,7 @@ A simple browser based image gallery application built using angular-js and node
 	{
 	    full_path: "",
 	    short_path: "",
+	    short_path_uri_encoded: "",
 	    name: "",
 	    pretty_name_without_extension: "",
 	    pretty_name: "",
@@ -72,11 +73,12 @@ A simple browser based image gallery application built using angular-js and node
 
 #### TODO
 
-* Install and use Bower?
 * Update README
-* Prevent left/right arrows inside an input box from moving the pictures
 * Redesign UI to be more mobile and bootstrap friendly
 
+* Clean CSS
+* Removed overhang of image to right side of image container 
+* Prevent left/right arrows inside an input box from moving the pictures
 * Swipe up/down in fullscreen when on mobile?
 * touch events - gestures?
 * Alert on unable to disable fullscreen
